@@ -1,0 +1,78 @@
+{
+	"animation_enabled": false,
+	"auto_complete_commit_on_tab": true,
+	"auto_find_in_selection": true,
+	"binary_file_patterns":
+	[
+		"*.dds",
+		"*.eot",
+		"*.gif",
+		"*.ico",
+		"*.jar",
+		"*.jpeg",
+		"*.jpg",
+		"*.pdf",
+		"*.png",
+		"*.swf",
+		"*.tga",
+		"*.ttf",
+		"*.zip"
+	],
+	"bold_folder_labels": true,
+	"caret_style": "smooth",
+	"color_scheme": "Packages/User/Solarized (Light) (SL).tmTheme",
+	"detect_indentation": false,
+	"ensure_newline_at_eof_on_save": true,
+	"file_exclude_patterns":
+	[
+		"*.sublime-*",
+		"*.pyc",
+		"*.retry",
+		".tags*",
+		".DS_Store",
+		"junitresults.xml",
+		"main.min.js"
+	],
+	"find_selected_text": true,
+	"folder_exclude_patterns":
+	[
+		".sass-cache",
+		".cache",
+		".vagrant",
+		".idea",
+		"__pycache__",
+		".git",
+		"logs",
+		"coverage",
+		".elasticbeanstalk",
+		"node_modules",
+		"bower_components",
+		"src/public/assets",
+		"src/host/swagger/swagger-ui",
+		"front/ng",
+		"test-results",
+		"build",
+		"dist",
+		".svn",
+		"*.dSYM",
+		".grunt",
+		".kitchen",
+		".delivery"
+	],
+	"font_face": "Inconsolata",
+	"font_size": 14,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+	],
+	"line_padding_bottom": 2,
+	"show_tab_close_buttons": false,
+	"soda_folder_icons": true,
+	"tab_size": 4,
+	"theme": "Sodarized Light 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"tree_animation_enabled": false,
+	"trim_trailing_white_space_on_save": true,
+	"use_simple_full_screen": true,
+	"vintage_start_in_command_mode": true
+}

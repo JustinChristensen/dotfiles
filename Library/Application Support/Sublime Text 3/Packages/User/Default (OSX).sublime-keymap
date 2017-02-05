@@ -1,0 +1,29 @@
+[
+    { "keys": ["ctrl+backquote"], "command": "unbound" },
+    { "keys": ["ctrl+shift+backquote"], "command": "show_panel", "args": {"panel": "console", "toggle": true} },
+
+    { "keys": ["ctrl+tab"], "command": "next_view" },
+    { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+    { "keys": [";"], "command": "show_overlay", "args": {"overlay": "command_palette", "text": ":"},
+        "context": [{"key": "setting.command_mode"}]
+    },
+
+    { "keys": ["escape"], "command": "exit_auto_complete_and_insert_mode", "context":
+        [
+            { "key": "auto_complete_visible", "operator": "equal", "operand": true }
+        ]
+    },
+
+    { "keys": ["super+ctrl+a"], "command": "alignment" },
+
+    {
+        "keys": ["ctrl+t"], "command": "goto_definition"
+    },
+    {
+        "keys": ["ctrl+j"], "command": "jump_back"
+    },
+    {
+        "keys": ["ctrl+k"], "command": "jump_forward"
+    }
+]

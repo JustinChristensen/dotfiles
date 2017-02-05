@@ -42,15 +42,15 @@ export NVM_DIR="$HOME/.nvm"
 # @param $2 Integer New Path
 # Usage: path_splice 1 /usr/local/bin
 path_splice() {
-	PATH=$(echo $PATH | awk -v POS="$1" -v NPATH="$2" '
-		BEGIN { RS = ":"; ORS = ":"; }
-		FNR - 1 == POS { print NPATH }  # if position matches record number
-		$0 ~ NPATH {next} # if path matches record skip
-		{print}')
+    PATH=$(echo $PATH | awk -v POS="$1" -v NPATH="$2" '
+    BEGIN { RS = ":"; ORS = ":"; }
+    FNR - 1 == POS { print NPATH }  # if position matches record number
+    $0 ~ NPATH {next} # if path matches record skip
+    {print}')
 
-	PATH=$(echo $PATH | sed -e 's/[[:space:]]*:*$//')
-	[[ $1 < 0 ]] && PATH=$PATH:$2
-}
+        PATH=$(echo $PATH | sed -e 's/[[:space:]]*:*$//')
+        [[ $1 < 0 ]] && PATH=$PATH:$2
+    }
 
 startvm() {
     VBoxManage startvm $1 --type headless
@@ -62,7 +62,7 @@ stopvm() {
 
 # pretty print PATH
 pppath() {
-  echo "${PATH//:/$'\n'}"
+    echo "${PATH//:/$'\n'}"
 }
 
 ####################################################################
@@ -81,6 +81,7 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/libexec"
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 
 # modifies PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

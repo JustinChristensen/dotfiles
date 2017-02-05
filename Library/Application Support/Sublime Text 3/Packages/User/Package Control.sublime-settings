@@ -1,0 +1,48 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"ApacheConf.tmLanguage",
+		"Babel",
+		"C Improved",
+		"EditorConfig",
+		"Elm Language Support",
+		"Emmet",
+		"FileBrowser",
+		"Gist",
+		"GoSublime",
+		"Grunt",
+		"HTML Boilerplate",
+		"HTML Mustache",
+		"HTML5",
+		"Indent XML",
+		"Insert Callback",
+		"Jade",
+		"JsFormat",
+		"LESS",
+		"MakeCommands",
+		"Markdown Extended",
+		"Package Control",
+		"Path Tools",
+		"PowerShell",
+		"Pretty JSON",
+		"Sass",
+		"SideBarEnhancements",
+		"SqlBeautifier",
+		"SublimeGDB",
+		"SublimeLinter",
+		"SublimeLinter-contrib-clang",
+		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"SublimeLinter-pylint",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby",
+		"Theme - Sodarized",
+		"x86 and x86_64 Assembly"
+	]
+}
