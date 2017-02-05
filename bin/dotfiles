@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xcode-select --install
+install_brew_deps

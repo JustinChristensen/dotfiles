@@ -1,0 +1,6 @@
+---
+listen_host: localhost
+listen_port: 10006
+palette: solarized_light
+palette_transparent: true
+wport: 10005

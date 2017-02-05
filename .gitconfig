@@ -1,0 +1,28 @@
+[user]
+    name = Justin Christensen
+    email = wroathe@gmail.com
+[core]
+    editor = vi
+    eol = lf
+    excludesfile = ~/.gitignore
+[color]
+    ui = auto
+[push]
+    default = current
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+[mergetool]
+    prompt = false
+[alias]
+    today = log --stat --since='1 Day Ago' --graph --pretty=oneline --abbrev-commit --date=relative
+    lg = log --graph --abbrev-commit --date=relative
+    st = status -sb
+    co = checkout
+    authors = log --format='%aN'
+    emails = log --format='%aE' 
+[credential]
+    helper = osxkeychain
