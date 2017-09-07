@@ -13,7 +13,7 @@
 # 1. Include
 ####################################################################
 
-. "$HOME/Dropbox/dotfiles/.bash_profile_keys"
+. "$HOME/Google Drive/dotfiles/.bash_profile_keys"
 
 # Bash Completion
 if [[ -f /usr/local/etc/bash_completion ]]; then
@@ -82,6 +82,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/libexec"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # modifies PATH
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
