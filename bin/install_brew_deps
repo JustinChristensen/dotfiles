@@ -9,11 +9,14 @@ brew install ascii
 brew install autoconf
 brew install bash
 brew install bash-completion
-brew install cmake --with-completion 
+brew install cmake --with-completion
 brew install curl
+brew install docker
+brew install docker-machine
+brew install docker-compose
 brew install dhcpdump
 brew install dnsmasq
-brew install doxygen --with-graphviz 
+brew install doxygen --with-graphviz
 brew install elm
 brew install fortune
 brew install fswatch
@@ -22,7 +25,7 @@ brew install geoip
 brew install git
 brew install go
 brew install gpg
-brew install graphviz --with-bindings --with-app 
+brew install graphviz --with-bindings --with-app
 brew install htop --with-ncurses
 brew install httpd24 --with-http2
 brew install irssi
