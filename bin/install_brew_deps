@@ -54,3 +54,4 @@ brew install stow
 brew install tree
 brew install valgrind
 brew install wget
+brew install yarn
