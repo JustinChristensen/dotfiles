@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-brew cask install blender
-brew cask install chefdk
-brew cask install docker
-brew cask install dotnet-sdk
-brew cask install haskell-platform
-brew cask install mongodb-compass
-brew cask install sequel-pro
-brew cask install vagrant
-brew cask install virtualbox
-brew cask install visual-studio-code
-brew cask install wireshark
+brew cask install \
+blender \
+chefdk \
+docker \
+dotnet-sdk \
+haskell-platform \
+mongodb-compass \
+sequel-pro \
+vagrant \
+virtualbox \
+visual-studio-code \
+wireshark

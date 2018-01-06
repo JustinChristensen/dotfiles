@@ -1,57 +1,41 @@
 #!/usr/bin/env bash
 
-brew tap homebrew/apache
-brew tap homebrew/nginx
-brew install ack
-brew install android-sdk
-brew install ant
-brew install ascii
-brew install autoconf
-brew install bash
-brew install bash-completion
-brew install cmake --with-completion
-brew install curl
-brew install docker
-brew install docker-machine
-brew install docker-compose
-brew install dhcpdump
-brew install dnsmasq
-brew install doxygen --with-graphviz
-brew install elm
-brew install fortune
-brew install fswatch
-brew install gdb
-brew install geoip
-brew install git
-brew install go
-brew install gpg
-brew install graphviz --with-bindings --with-app
-brew install htop --with-ncurses
-brew install httpd24 --with-http2
-brew install irssi
-brew install jmeter
-brew install jq
-brew install macvim --with-python3 --with-override-system-vim
-brew install markdown
-brew install maven
-brew install mercurial
-brew install mongodb
-brew install mysql
-brew install netcat
-brew install nginx-full --with-http2
-brew install nmap --with-pygtk
-brew install nvm
-brew install openldap
-brew install openssl
-brew install packer
-brew install python
-brew install python3
-brew install qcachegrind --with-graphviz
-brew install rename
-brew install sqlite
-brew install ssh-copy-id
-brew install stow
-brew install tree
-brew install valgrind
-brew install wget
-brew install yarn
+brew install \
+ack \
+ant \
+ascii \
+autoconf \
+bash \
+bash-completion@2 \
+curl \
+dhcpdump \
+dnsmasq \
+doxygen --with-graphviz \
+elm \
+git \
+go \
+graphviz --with-bindings --with-app \
+htop --with-ncurses \
+httpd24 --with-http2 \
+irssi \
+jq \
+macvim --with-python3 --with-override-system-vim \
+markdown \
+maven \
+mongodb \
+mysql \
+netcat \
+nginx \
+nmap \
+nvm \
+openldap \
+openssl \
+packer \
+python \
+python3 \
+rename \
+sqlite \
+ssh-copy-id \
+stow \
+tree \
+yarn --without-node
