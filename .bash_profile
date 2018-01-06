@@ -15,50 +15,17 @@
 
 . "$HOME/Google Drive/dotfiles/.bash_profile_keys"
 
-# Bash Completion
-if [[ -f /usr/local/etc/bash_completion ]]; then
-    . /usr/local/etc/bash_completion
-fi
+bash_completion='/usr/local/share/bash-completion/bash_completion'
+git_completion='/usr/local/etc/bash_completion.d/git-completion.bash'
+git_prompt='/usr/local/etc/bash_completion.d/git-prompt.sh'
 
-# Git Completion
-if [[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]]; then
-    . /usr/local/etc/bash_completion.d/git-completion.bash
-fi
-
-# Git Prompt
-if [[ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]]; then
-    . /usr/local/etc/bash_completion.d/git-prompt.sh
-fi
-
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[[ -f $bash_completion ]] && . $bash_completion
+[[ -f $git_completion ]] && . $git_completion
+[[ -f $git_prompt ]] && . $git_prompt
 
 ####################################################################
 # 2. Functions
 ####################################################################
-
-# PATH Splice
-# @param $1 Integer Position
-# @param $2 Integer New Path
-# Usage: path_splice 1 /usr/local/bin
-path_splice() {
-    PATH=$(echo $PATH | awk -v POS="$1" -v NPATH="$2" '
-    BEGIN { RS = ":"; ORS = ":"; }
-    FNR - 1 == POS { print NPATH }  # if position matches record number
-    $0 ~ NPATH {next} # if path matches record skip
-    {print}')
-
-        PATH=$(echo $PATH | sed -e 's/[[:space:]]*:*$//')
-        [[ $1 < 0 ]] && PATH=$PATH:$2
-    }
-
-startvm() {
-    VBoxManage startvm $1 --type headless
-}
-
-stopvm() {
-    VBoxManage controlvm $1 $2
-}
 
 # pretty print PATH
 pppath() {
@@ -69,7 +36,7 @@ pppath() {
 # 3. Environment Setup
 ####################################################################
 
-export PS1="\[\e[1m\][\u@\h:\W]\[\e[0m\] (node \$(nvm current 2> /dev/null))\$(__git_ps1 2> /dev/null) \[\e[1m\]$ \[\e[0m\]"
+export PS1="\[\e[1m\][\u@\h:\W]\[\e[0m\]\$(__git_ps1 2> /dev/null) \[\e[1m\]$ \[\e[0m\]"
 export HISTSIZE=500000
 export CLICOLOR=1
 export EDITOR=vim
@@ -202,3 +169,7 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Get-Counter | Export-Counter
 
 # rabbitmqadmin --username=admin --password=admin -f tsv -q list queues name | while read -r name; do rabbitmqadmin --username=admin --password=admin delete queue name="${name}"; done 
+eval "$(chef shell-init bash)"
+
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
