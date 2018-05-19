@@ -1,9 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/wroathe/Desktop/docker-nginx'
-let g:netrw_dirhist_2='/Users/wroathe/Desktop/docker-nginx/stable'
-let g:netrw_dirhist_3='/Users/wroathe/Desktop/docker-nginx'
-let g:netrw_dirhist_4='/Users/wroathe/Desktop/docker-nginx/mainline'
-let g:netrw_dirhist_5='/Users/wroathe/Desktop/docker-nginx'
-let g:netrw_dirhist_6='/Users/wroathe/Desktop/docker-nginx/stable'
-let g:netrw_dirhist_7='/Users/wroathe/Desktop/docker-nginx/stable/alpine'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/wroathe/Desktop/EntityFrameworkCore/src/EFCore.Design/Migrations'
+let g:netrw_dirhist_2='/Users/wroathe/Desktop/EntityFrameworkCore/src/EFCore.Design/Migrations/Design'
+let g:netrw_dirhist_3='/Users/wroathe/Development/hask/rwh'

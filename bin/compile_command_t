@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-cd ~/.vim/bundle/command-t/ruby/command-t
+cd ~/.vim/bundle/command-t/ruby/command-t/ext/command-t
 /usr/bin/ruby extconf.rb
 make
+

@@ -45,14 +45,15 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export STOW_DIR="$HOME/dotfiles"
 export GOPATH="$HOME/Development/go"
 export PATH="$HOME/bin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/libexec"
+export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # modifies PATH
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 ####################################################################
 # 4. Shell Options
@@ -169,7 +170,7 @@ alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 # Get-Counter | Export-Counter
 
 # rabbitmqadmin --username=admin --password=admin -f tsv -q list queues name | while read -r name; do rabbitmqadmin --username=admin --password=admin delete queue name="${name}"; done 
-eval "$(chef shell-init bash)"
+# eval "$(chef shell-init bash)"
 
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"

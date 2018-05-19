@@ -33,8 +33,27 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" pathogen
-execute pathogen#infect()
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/deoplete.nvim'
+Plug 'eagletmt/ghcmod-vim'
+Plug 'wincent/command-t', {
+    \   'tag': '5.0.2',
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
+Plug 'othree/html5.vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'rust-lang/rust.vim'
+Plug 'rstacruz/sparkup'
+Plug 'godlygeek/tabular'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go'
+Plug 'groenewege/vim-less'
+Plug 'tpope/vim-surround'
+Plug 'ElmCast/elm-vim'
+call plug#end()
 
 " When set to "all", a fold is closed when the cursor isn't in it and
 " its level is higher than 'foldlevel'.  Useful if you want folds to
@@ -183,6 +202,15 @@ set formatoptions=n
 " enable tagstack
 set tagstack
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " get hex for file
 command -bar Hexmode call ToggleHex()
 nnoremap <C-H> :Hexmode<CR>
@@ -248,7 +276,7 @@ nmap <silent> <C-e> :make<CR>
 set wildmenu
 
 " ignore the following file patterns
-set wildignore+=tmp/**,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules/**
+set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist
 
 " set command t options
 let g:CommandTMaxHeight=5
@@ -272,3 +300,8 @@ set synmaxcol=256
 set guioptions-=r
 set guioptions-=l
 set guioptions-=b
+
+map <C-n> :NERDTreeToggle<CR>
+
+" let NERDTreeIgnore=['\~$', 'dist', 'build', 'node_modules', 'bower_components']
+let NERDTreeRespectWildIgnore=1
