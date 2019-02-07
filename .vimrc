@@ -35,14 +35,23 @@ filetype indent on
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'Shougo/deoplete.nvim'
-Plug 'eagletmt/ghcmod-vim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'wincent/command-t', {
     \   'tag': '5.0.2',
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 Plug 'othree/html5.vim'
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'rstacruz/sparkup'
 Plug 'godlygeek/tabular'
@@ -54,6 +63,29 @@ Plug 'groenewege/vim-less'
 Plug 'tpope/vim-surround'
 Plug 'ElmCast/elm-vim'
 call plug#end()
+
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" set statusline+=%(Ln %l, Col %c%)
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:deoplete#enable_at_startup = 1
+
+" let g:syntastic_haskell_checkers = ["hlint"]
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+
+let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
+let g:LanguageClient_loggingFile = "/tmp/nvim/languageclient-stdout.log"
+" let g:LanguageClient_serverStderr = "/tmp/nvim/languageclient-server-stderr.log" 
+let g:LanguageClient_loggingLevel = "DEBUG"
+" let g:LanguageClient_trace = "verbose"
+" let g:LanguageClient_hoverPreview 
+" let g:LanguageClient_diagnosticsEnable
 
 " When set to "all", a fold is closed when the cursor isn't in it and
 " its level is higher than 'foldlevel'.  Useful if you want folds to
@@ -202,64 +234,28 @@ set formatoptions=n
 " enable tagstack
 set tagstack
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " get hex for file
-command -bar Hexmode call ToggleHex()
 nnoremap <C-H> :Hexmode<CR>
 inoremap <C-H> <Esc>:Hexmode<CR>
 vnoremap <C-H> :<C-U>Hexmode<CR>
 
-" helper function to toggle hex mode
-function! ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
 
 " set mapleader
 let mapleader = ","
 
 " alternate
 nmap <silent> <Leader>a <C-^>
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
+map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
+map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
+map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>lb :call LanguageClient#textDocument_references()<CR>
+map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
+map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
 
 " disable extra conf confirm for ycm
 let g:ycm_confirm_extra_conf = 0

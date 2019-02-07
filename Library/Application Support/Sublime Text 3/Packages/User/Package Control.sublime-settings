@@ -2,11 +2,21 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeGDB",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"SublimeLinter-pylint",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby"
 	],
 	"installed_packages":
 	[
 		"Alignment",
-		"ApacheConf.tmLanguage",
+		"ApacheConf",
 		"Babel",
 		"C Improved",
 		"EditorConfig",
@@ -37,8 +47,8 @@
 		"SublimeAStyleFormatter",
 		"SublimeGDB",
 		"SublimeLinter",
-		"SublimeLinter-contrib-clang",
-		"SublimeLinter-contrib-eslint",
+		"SublimeLinter-clang",
+		"SublimeLinter-eslint",
 		"SublimeLinter-jshint",
 		"SublimeLinter-json",
 		"SublimeLinter-pylint",

@@ -60,10 +60,20 @@
 		".delivery"
 	],
 	"font_face": "Inconsolata",
-	"font_size": 16,
+	"font_size": 14,
 	"highlight_line": true,
 	"ignored_packages":
 	[
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeGDB",
+		"SublimeLinter",
+		"SublimeLinter-eslint",
+		"SublimeLinter-jshint",
+		"SublimeLinter-json",
+		"SublimeLinter-pylint",
+		"SublimeLinter-rubocop",
+		"SublimeLinter-ruby"
 	],
 	"line_padding_bottom": 2,
 	"show_tab_close_buttons": false,

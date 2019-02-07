@@ -108,7 +108,7 @@ chatnets = {
 };
 
 channels = (
-  { name = "#chef"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#haskell"; chatnet = "Freenode"; autojoin = "Yes"; },
 );
 
 aliases = {

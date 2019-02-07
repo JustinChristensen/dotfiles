@@ -7,5 +7,17 @@
     "terminal.integrated.lineHeight": 1.2,
     "explorer.confirmDelete": false,
     "workbench.activityBar.visible": true,
-    "explorer.openEditors.visible": 0
+    "explorer.openEditors.visible": 0,
+    "workbench.editor.enablePreview": false,
+    "window.zoomLevel": 0,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "typescript.validate.enable": false,
+    "javascript.validate.enable": false,
+    "explorer.confirmDragAndDrop": false,
+    "php.suggest.basic": false,
+    "workbench.editor.labelFormat": "medium",
+    "search.exclude": {
+        "**/dist": true,
+        "**/dist-newstyle": true
+    }
 }
