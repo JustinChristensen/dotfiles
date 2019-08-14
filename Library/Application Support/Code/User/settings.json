@@ -6,7 +6,7 @@
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.lineHeight": 1.2,
     "explorer.confirmDelete": false,
-    "workbench.activityBar.visible": true,
+    "workbench.activityBar.visible": false,
     "explorer.openEditors.visible": 0,
     "workbench.editor.enablePreview": false,
     "window.zoomLevel": 0,
@@ -19,5 +19,6 @@
     "search.exclude": {
         "**/dist": true,
         "**/dist-newstyle": true
-    }
+    },
+    "C_Cpp.updateChannel": "Insiders"
 }

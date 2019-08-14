@@ -1,7 +1,7 @@
 ####################################################################
 # Author: Justin Christensen
 #
-# 1. Include
+# 1. Include 
 # 2. Functions
 # 3. Environment Setup
 # 4. Shell Options 
@@ -28,8 +28,12 @@ git_prompt='/usr/local/etc/bash_completion.d/git-prompt.sh'
 ####################################################################
 
 # pretty print PATH
-pppath() {
-    echo "${PATH//:/$'\n'}"
+#   pppath() {
+#       echo "${PATH//:/$'\n'}"
+#   }
+
+commits_by_year() {
+    git log --format="%ai" "$1" | cut -d- -f1 | uniq -c
 }
 
 ####################################################################
@@ -47,6 +51,7 @@ export GOPATH="$HOME/Development/go"
 export PATH="$HOME/bin:$PATH"
 # export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/libexec"
+export PATH="$PATH:/usr/local/sbin"
 export PATH="$PATH:$HOME/.cabal/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$GOPATH/bin"
@@ -54,7 +59,8 @@ export PATH="$PATH:/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 export PATH="/Applications/MAMP/bin/php/php7.2.1/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-export PATH="/usr/local/lib/ruby/gems/2.5.0/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
 alias mysql="/Applications/MAMP/Library/bin/mysql"
 
@@ -184,7 +190,11 @@ if [ -e /Users/wroathe/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/wroath
 
 alias syslog_errors="log stream --style compact --predicate 'messageType == error || messageType == fault'"
 
-# export cabal_helper_libexecdir="$HOME/.cabal/libexec/x86_64-osx-ghc-8.4.4/cabal-helper-0.8.1.2/cabal-helper-wrapper"
-
 # Which GHC RTS options are available
 # ghc +RTS -?
+
+
+export PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH="/usr/local/opt/texinfo/bin:$PATH"
+export PATH="/usr/local/opt/flex/bin:$PATH"
+export PATH="/usr/local/opt/bison/bin:$PATH"
