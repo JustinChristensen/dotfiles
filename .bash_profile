@@ -36,6 +36,11 @@ commits_by_year() {
     git log --format="%ai" "$1" | cut -d- -f1 | uniq -c
 }
 
+report_disk_usage() {
+    sudo du -ch / | sort -h > usage.txt
+    tail -30 usage.txt
+}
+
 ####################################################################
 # 3. Environment Setup
 ####################################################################
@@ -61,8 +66,6 @@ export PATH="/Applications/MAMP/bin/php/php7.2.1/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
-
-alias mysql="/Applications/MAMP/Library/bin/mysql"
 
 # modifies PATH
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -193,6 +196,11 @@ alias syslog_errors="log stream --style compact --predicate 'messageType == erro
 # Which GHC RTS options are available
 # ghc +RTS -?
 
+# find who's being naughty
+# :verbose set expandtab?
+
+# tty for hyperkit vms
+# screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
 
 export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"

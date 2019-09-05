@@ -191,7 +191,7 @@ nmap <silent> <C-e> :make<CR>
 set wildmenu
 
 " ignore the following file patterns
-set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist,dist-newstyle
+set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist,dist-newstyle,data
 
 " set command t options
 let g:CommandTMaxHeight=5
@@ -218,5 +218,12 @@ set guioptions-=b
 
 map <C-n> :NERDTreeToggle<CR>
 
+" AddTabularPattern! first_asterisk /^[^*]*\zs\*/l1c0l0
+
 " let NERDTreeIgnore=['\~$', 'dist', 'build', 'node_modules', 'bower_components']
 let NERDTreeRespectWildIgnore=1
+
+map <C-s> :execute "grep -r " . expand("<cword>") . " ." <Bar> cw<CR>
+
+
+

@@ -20,5 +20,8 @@
         "**/dist": true,
         "**/dist-newstyle": true
     },
-    "C_Cpp.updateChannel": "Insiders"
+    "C_Cpp.updateChannel": "Insiders",
+    "[haskell]": {
+        "editor.renderIndentGuides": false
+    }
 }
