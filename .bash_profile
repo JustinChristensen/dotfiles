@@ -206,3 +206,21 @@ export PATH="/usr/local/opt/gettext/bin:$PATH"
 export PATH="/usr/local/opt/texinfo/bin:$PATH"
 export PATH="/usr/local/opt/flex/bin:$PATH"
 export PATH="/usr/local/opt/bison/bin:$PATH"
+
+# ommitting things from package installs on systems that use dpkg!!!!
+# cat /etc/dpkg/dpkg.cfg.d/excludes
+# 
+# # Drop all man pages
+# path-exclude=/usr/share/man/*
+# 
+# # Drop all translations
+# path-exclude=/usr/share/locale/*/LC_MESSAGES/*.mo
+# 
+# # Drop all documentation ...
+# path-exclude=/usr/share/doc/*
+# 
+# # ... except copyright files ...
+# path-include=/usr/share/doc/*/copyright
+# 
+# # ... and Debian changelogs
+# path-include=/usr/share/doc/*/changelog.Debian.*

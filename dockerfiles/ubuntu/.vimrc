@@ -37,6 +37,11 @@ set foldenable
 set foldlevel=1
 set foldmethod=syntax
 
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
+
+
 " yank to end of line
 nmap Y y$
 
@@ -90,10 +95,10 @@ set smartcase
 set hidden
 
 " set background color
-" set background=light
+set background=light
 
 " set color scheme
-colorscheme solarized
+silent! colorscheme solarized
 
 " set formatoptions
 set formatoptions=n
