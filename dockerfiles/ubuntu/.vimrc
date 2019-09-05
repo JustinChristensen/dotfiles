@@ -75,9 +75,9 @@ set autoindent
 
 " disable swap
 set backup
-set backupdir=~/.vim/.backup
+set backupdir=~/.vim/backup
 set noswapfile
-set directory=~/.vim/.swp
+set directory=~/.vim/swp
 
 " cursor movement
 set virtualedit=all
