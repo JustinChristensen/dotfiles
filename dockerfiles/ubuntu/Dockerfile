@@ -14,18 +14,6 @@ add-apt-repository -y ppa:neovim-ppa/stable && \
 # install packages
 apt-get update -y && \
 apt-get install -y --reinstall --no-install-recommends \
-# ruby library dependencies    
-    libffi-dev \
-    libgdbm-dev \
-    libgmp-dev \
-    libjemalloc-dev \
-    libncurses5-dev \
-    libncursesw5-dev \
-    libreadline6-dev \
-    libssl-dev \
-    libyaml-dev \
-    zlib1g-dev \
-# other packages
     bash \
     bash-completion \
     coreutils \
@@ -51,9 +39,19 @@ useradd -g sudo -s /bin/bash -m -k /root "${UBUNTU_USER}" && \
 echo "${UBUNTU_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # install ruby from source
-# bionic includes 2.5.1, which seems to have trouble finding the right cc
-# compiler for building extensions (keeps wanting gcc)
 RUN \
+apt-get install -y --reinstall --no-install-recommends \
+# ruby library dependencies    
+    libffi-dev \
+    libgdbm-dev \
+    libgmp-dev \
+    libjemalloc-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libreadline6-dev \
+    libssl-dev \
+    libyaml-dev \
+    zlib1g-dev && \
 curl -sLO 'https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz' && \
 sha256sum -c sha256sums.txt && \
 tar -xzf ruby-2.6.4.tar.gz && \
