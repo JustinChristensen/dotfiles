@@ -39,6 +39,12 @@ set foldmethod=syntax
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'wincent/command-t', {
+    \   'tag': '5.0.3',
+    \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
+    \ }
+Plug 'editorconfig/editorconfig-vim'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 

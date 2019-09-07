@@ -151,7 +151,7 @@ set hidden
 set background=light
 
 " set color scheme
-colorscheme solarized
+silent! colorscheme solarized
 
 " set formatoptions
 set formatoptions=n
