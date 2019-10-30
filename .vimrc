@@ -191,7 +191,7 @@ nmap <silent> <C-e> :make<CR>
 set wildmenu
 
 " ignore the following file patterns
-set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist,dist-newstyle,data
+set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist,dist-newstyle,data,*.dSYM
 
 " set command t options
 let g:CommandTMaxHeight=5

@@ -1,8 +1,8 @@
 FROM ubuntu:bionic
 
 ARG UBUNTU_USER=wroathe
-
-COPY sha256sums.txt /
+ARG RUBY=ruby-2.6.4
+ARG LIBCHECK=check-0.12.0
 
 RUN \ 
 # the ubuntu image excludes man pages by default, and we like manpages
@@ -11,16 +11,24 @@ rm /etc/dpkg/dpkg.cfg.d/excludes && \
 apt-get update -y && \
 apt-get install -y --no-install-recommends software-properties-common && \
 add-apt-repository -y ppa:neovim-ppa/stable && \
+add-apt-repository -y ppa:hvr/ghc && \
 # install packages
 apt-get update -y && \
 apt-get install -y --reinstall --no-install-recommends \
+    autotools-dev \
     bash \
     bash-completion \
+    cabal-install-2.4 \
     coreutils \
     curl \
     clang-8 \
+    gdb \
+    ghc-8.6.5 \
     git \
+    graphviz \
+    graphviz-dev \
     less \
+    ltrace \
     make \
     man \
     manpages-dev \
@@ -29,6 +37,7 @@ apt-get install -y --reinstall --no-install-recommends \
     python3-dev \
     python3-pip \
     sudo \
+    strace \
     valgrind && \
 # use clang-8 as the system's c compiler
 update-alternatives --install /usr/bin/cc cc /usr/bin/clang-8 100 && \
@@ -37,6 +46,20 @@ update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-8 100 && \
 useradd -g sudo -s /bin/bash -m -k /root "${UBUNTU_USER}" && \
 # allow my dev user to sudo without password
 echo "${UBUNTU_USER} ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# download sources and verify the shas
+COPY sha256sums.txt /
+RUN  \
+curl -sLO "https://cache.ruby-lang.org/pub/ruby/2.6/${RUBY}.tar.gz" && \
+curl -sLO "https://github.com/libcheck/check/releases/download/0.12.0/${LIBCHECK}.tar.gz" && \
+sha256sum -c sha256sums.txt && rm sha256sums.txt
+
+# install libcheck from source
+RUN \
+tar -xzf "${LIBCHECK}.tar.gz" && \
+cd "${LIBCHECK}" && \
+./configure && make -j8 && make install && \
+cd ../ && rm -rf check-*
 
 # install ruby from source
 RUN \
@@ -52,12 +75,10 @@ apt-get install -y --reinstall --no-install-recommends \
     libssl-dev \
     libyaml-dev \
     zlib1g-dev && \
-curl -sLO 'https://cache.ruby-lang.org/pub/ruby/2.6/ruby-2.6.4.tar.gz' && \
-sha256sum -c sha256sums.txt && \
-tar -xzf ruby-2.6.4.tar.gz && \
-cd ruby-2.6.4 && \
+tar -xzf "${RUBY}.tar.gz" && \
+cd "${RUBY}" && \
 ./configure && make -j8 && make install && \
-cd ../ && rm -rf ruby-* sha256sums.txt
+cd ../ && rm -rf ruby-* 
 
 # neovim dependencies
 RUN \
