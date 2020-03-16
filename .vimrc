@@ -36,11 +36,11 @@ filetype indent on
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'roxma/nvim-yarp'
   Plug 'ncm2/ncm2'
 else
-  Plug 'Shougo/deoplete.nvim'
+"  Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -196,6 +196,7 @@ set wildignore+=tmp,.git,*.obj,*.o,*.png,*.jpg,*.gif,*.bmp,node_modules,dist,dis
 " set command t options
 let g:CommandTMaxHeight=5
 let g:CommandTMatchWindowReverse=1
+let g:CommandTTraverseSCM="pwd"
 
 " PHP options
 " let php_htmlInStrings = 1

@@ -41,6 +41,13 @@ report_disk_usage() {
     tail -30 usage.txt
 }
 
+networks() { 
+    local APS=$(airport -s) && \
+    local HEAD=$(echo "$APS" | head -1) && \
+    local REST=$(echo "$APS" | tail +2) && \
+    echo "$HEAD" && echo "$REST" | sort -k1.52nr,1.54; 
+}
+
 ####################################################################
 # 3. Environment Setup
 ####################################################################
@@ -226,3 +233,22 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 # 
 # # ... and Debian changelogs
 # path-include=/usr/share/doc/*/changelog.Debian.*
+
+# repeat program in gdb
+# set pagination off
+# break exit
+# commands
+# run
+# end
+
+# Malloc tracing OSX
+# echo 'wwwafoo.com' | MallocHelp=1 ./auto nfa -r 'www.foo\.com'
+
+# print firmware variables in nvram
+# sudo nvram -p
+
+# error logging for OSX
+# log show --predicate '(messageType == "error") || (messageType == "fault")' --last=23m
+
+# scan access points
+# airport -s
