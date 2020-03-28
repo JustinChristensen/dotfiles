@@ -254,7 +254,7 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 # airport -s
 
 trace_temps() { 
-    sudo powermetrics --samplers smc | fgrep --line-buffered 'die temperature' | (
+    sudo powermetrics --samplers smc "$@" | fgrep --line-buffered 'die temperature' | (
         while IFS=' ' read -r DEVICE _ _ TEMP UNIT; do 
             date "+%Y-%m-%dT%H:%M:%SZ $DEVICE $TEMP $UNIT" 
         done
