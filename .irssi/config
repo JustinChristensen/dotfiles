@@ -2,7 +2,7 @@ servers = (
   { address = "irc.dal.net"; chatnet = "DALnet"; port = "6667"; },
   { address = "irc.efnet.org"; chatnet = "EFNet"; port = "6667"; },
   { address = "irc.esper.net"; chatnet = "EsperNet"; port = "6667"; },
-  { 
+  {
     address = "chat.freenode.net";
     chatnet = "Freenode";
     port = "6667";
@@ -57,6 +57,7 @@ chatnets = {
   };
   Freenode = {
     type = "IRC";
+    autosendcmd = "/msg nickserv identify $IRSSI_PASS";
     max_kicks = "1";
     max_msgs = "4";
     max_whois = "1";
@@ -108,7 +109,8 @@ chatnets = {
 };
 
 channels = (
-  { name = "#haskell"; chatnet = "Freenode"; autojoin = "Yes"; },
+    { name = "#haskell"; chatnet = "Freenode"; autojoin = "Yes"; },
+    { name = "##c"; chatnet = "Freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
