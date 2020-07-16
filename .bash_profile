@@ -48,6 +48,31 @@ networks() {
     echo "$HEAD" && echo "$REST" | sort -k1.52nr,1.54; 
 }
 
+trace_temps() { 
+    sudo powermetrics --samplers smc "$@" | fgrep --line-buffered 'die temperature' | (
+        while IFS=' ' read -r DEVICE _ _ TEMP UNIT; do 
+            date "+%Y-%m-%dT%H:%M:%SZ $DEVICE $TEMP $UNIT" 
+        done
+    )
+}
+ 
+# this doesn't properly handle whitespace in fields
+# viewcsv() {
+#     column -s, -t < "$1" | less -#2 -N -S
+# }
+
+ubuntu() {
+    docker run --rm -it -v "$(pwd):/home/wroathe/pwd" "$@" ubuntu-dev 
+}
+
+start_rohan() {
+    VBoxManage startvm --type headless Ubuntu
+}
+
+stop_rohan() {
+    VBoxManage controlvm Ubuntu acpipowerbutton
+}
+
 ####################################################################
 # 3. Environment Setup
 ####################################################################
@@ -73,11 +98,15 @@ export PATH="/Applications/MAMP/bin/php/php7.2.1/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DYLD_LIBRARY_PATH=~/lib
 
 # modifies PATH
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 
 ####################################################################
 # 4. Shell Options
@@ -253,12 +282,5 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 # scan access points
 # airport -s
 
-trace_temps() { 
-    sudo powermetrics --samplers smc "$@" | fgrep --line-buffered 'die temperature' | (
-        while IFS=' ' read -r DEVICE _ _ TEMP UNIT; do 
-            date "+%Y-%m-%dT%H:%M:%SZ $DEVICE $TEMP $UNIT" 
-        done
-    )
-}
-
-
+export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
+export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"

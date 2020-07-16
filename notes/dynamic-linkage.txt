@@ -1,0 +1,8 @@
+# Dynamic Linkage
+
+# print the directories and files ld.so searchs for shared objects specified in the executable
+LD_DEBUG=libs ./prog 
+
+# print the shared objects needed by the executable
+ldd prog
+

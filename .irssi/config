@@ -58,6 +58,7 @@ chatnets = {
   Freenode = {
     type = "IRC";
     autosendcmd = "/msg nickserv identify $IRSSI_PASS";
+    usermode = "+gi";
     max_kicks = "1";
     max_msgs = "4";
     max_whois = "1";
@@ -109,8 +110,8 @@ chatnets = {
 };
 
 channels = (
-    { name = "#haskell"; chatnet = "Freenode"; autojoin = "Yes"; },
-    { name = "##c"; chatnet = "Freenode"; autojoin = "Yes"; }
+  { name = "##C"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#haskell"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -379,4 +380,10 @@ settings = {
 };
 hilights = (
   { text = "wroathe"; color = "%M"; nick = "yes"; word = "yes"; }
+);
+ignores = (
+  { mask = "dho"; level = "ALL"; },
+  { mask = "zid"; level = "ALL"; },
+  { level = "JOINS PARTS QUITS MODES TOPICS"; },
+  { mask = "Julius*"; level = "ALL"; }
 );

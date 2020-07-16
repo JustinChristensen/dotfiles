@@ -1,0 +1,3 @@
+# finding files by type (detected by the file command)
+
+find ~/Library -print0 -type f | xargs -0 -n 2000 -P 4 file -e apptype -e ascii -e cdf -e compress -e elf -e encoding -e tar -e text -e tokens | grep SQLite > sqlite.txt

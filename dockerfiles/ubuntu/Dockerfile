@@ -18,6 +18,7 @@ apt-get install -y --reinstall --no-install-recommends \
     autotools-dev \
     bash \
     bash-completion \
+    binfmt-support \
     cabal-install-2.4 \
     coreutils \
     curl \
@@ -28,6 +29,7 @@ apt-get install -y --reinstall --no-install-recommends \
     graphviz \
     graphviz-dev \
     less \
+#     llvm-8-tools \
     ltrace \
     make \
     man \
@@ -36,6 +38,8 @@ apt-get install -y --reinstall --no-install-recommends \
     openssl \
     python3-dev \
     python3-pip \
+#     qemu \
+#     qemu-user-static \
     sudo \
     strace \
     valgrind && \

@@ -45,7 +45,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'wincent/command-t', {
-    \   'tag': '5.0.2',
+    \   'tag': '5.0.3',
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
 Plug 'autozimu/LanguageClient-neovim', {

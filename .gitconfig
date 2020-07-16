@@ -5,6 +5,7 @@
     editor = vi
     eol = lf
     excludesfile = ~/.gitignore
+    ignorecase = false
 [color]
     ui = auto
 [push]

@@ -1,0 +1,31 @@
+# Virtual Memory
+
+## Tables
+virtual memory page tables
+PGD - Page Global Directory
+-P4D - Page ? Directory-
+PUD - Page Upper Directory
+PMD - Page Middle Directory
+PTE - Page Table Entry
+4-Level Page Tables
+octave:1> 2 ^ 48
+ans =  281474976710656                                
+octave:2> 281474976710656 / 512
+ans =  549755813888                                   PGD
+octave:3> 281474976710656 / 512 / 512
+ans =  1073741824                                     PUD
+octave:4> 281474976710656 / 512 / 512 / 512
+ans =  2097152                                        PMD
+octave:5> 281474976710656 / 512 / 512 / 512 / 512     
+ans =  4096                                           PTE
+
+## Links
+
+PTE bit fields  
+https://github.com/torvalds/linux/blob/master/arch/x86/include/asm/pgtable_types.h#L12-L31
+
+Task Struct  
+https://github.com/torvalds/linux/blob/master/include/linux/sched.h#L633
+
+VM Area Struct  
+https://github.com/torvalds/linux/blob/master/include/linux/mm_types.h#L301 
