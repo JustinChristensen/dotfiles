@@ -1,0 +1,57 @@
+32 bit fields
+s exp      fraction
+0 00000000 00000000000000000000000
+  k = 8    n = 23
+
+V = (-1)^s x M x 2^E
+M = 1 + fraction
+E = exp - bias
+bias = 127 (on 32 bit, 2^(k - 1) - 1 generally)
+s is the sign bit
+
+Converting _normalized_ integers to floating point representation:
+
+1. convert x to binary
+
+    3510593 = 1101011001000101000001
+
+2. x has a binary point 
+
+    3510593.0 = 1101011001000101000001[.]
+
+3. shift until the representation is normalized
+
+    1.101011001000101000001 * [2^21]    (shifted 21 places)
+
+4. drop leading 1, and pad the right side with 0s to fill out the fraction field
+
+    fraction = 101011001000101000001[00]    (padded to n = 23)
+
+5. E = exp - bias, bias = 127 for a 32-bit float, E = 21 (above exponent)
+
+    21 = exp - 127
+    21 + 127 = exp
+    exp = 148
+
+6. Convert exp to binary
+
+    148 = 10010100
+
+7. Resulting IEEE-754 32-bit float representation
+
+                 s exp      fraction
+    3510593.0  = 0 10010100 10101100100010100000100
+
+Putting it all together:
+
+    V = (-1)^s x M x 2^E
+
+      (-1)^0 x M x 2^E                                      (sign bit)
+    = 1 x (1 + 0.10101100100010100000100) x 2^E             (M = 1 + fraction)
+    = 1 x (1.10101100100010100000100) x 2^(10010100 - 127)  (E = exp - bias)
+    = 1 x (1.10101100100010100000100) x 2^(148 - 127)       (convert exp to base 10)
+    = 1 x (1.10101100100010100000100) x 2^21                (recover the original shifted exponent)
+    = 1101011001000101000001.00                             (shift binary point 21 positions to the right)
+    = 3510593                                               (convert to decimal, success)
+
+https://stackoverflow.com/questions/4987176/how-do-you-convert-a-fraction-to-binary

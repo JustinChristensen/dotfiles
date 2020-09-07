@@ -61,6 +61,10 @@ trace_temps() {
 #     column -s, -t < "$1" | less -#2 -N -S
 # }
 
+rx_to_rx() {
+    echo "obase=$2; ibase=$1; $3" | bc
+}
+
 ubuntu() {
     docker run --rm -it -v "$(pwd):/home/wroathe/pwd" "$@" ubuntu-dev 
 }
@@ -99,6 +103,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="/Library/TeX/texbin:$PATH"
 
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
@@ -284,3 +289,12 @@ export PATH="/usr/local/opt/bison/bin:$PATH"
 
 export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
 export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
+
+# file bytes in decimal
+# od -An -vtu1 foo.txt
+
+# TODO: find object with defined symbol
+# e.g. 
+# findsym _exit /usr/lib       
+# => /usr/lib/system/libfoo.dylib   0xefae000a _TEXT _exit
+# => /usr/lib/system/libbar.dylib   0xefaeeeea _TEXT _exit

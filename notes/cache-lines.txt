@@ -1,0 +1,8 @@
+# OSX 
+
+## Cache line size
+system_profiler SPHardwareDataType
+sysctl machdep.cpu.cache.linesize
+
+## CPU model number
+sysctl machdep.cpu.brand_string

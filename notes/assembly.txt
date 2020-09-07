@@ -1,0 +1,40 @@
+program counter relative jump:
+
+handle_type:
+    100000a40:       
+    ...
+    100000aa8:	e9 82 00 00 00 	jmp	130 <_handle_type+0xef>     
+                ^  ^                    ^                 ^
+                |  |                    |                 | 0xa40 + 0xef = 0xaad + 0x82 = 0xb2f
+                |  |                    | 0x82            
+                |  |
+                |  | offset +0x82 = offset +130    
+                |  
+                | opcode e9
+    100000aad:
+    ...
+    100000b2f:
+
+
+stack protector and lldb disas syntax:
+
+(lldb) disas -m -n stackfib                                                                                                            arr`stackfib:
+    0x100000d40 <+0>:   pushq  %rbp
+    0x100000d41 <+1>:   movq   %rsp, %rbp
+    ...
+    # store the canary value on the stack
+    0x100000d52 <+18>:  movq   0x2af(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
+    0x100000d59 <+25>:  movq   (%rax), %rax
+    0x100000d5c <+28>:  movq   %rax, -0x28(%rbp)
+    ...
+    # load the canary value and the stack canary value
+    0x100000dc0 <+128>: movq   0x241(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
+    0x100000dc7 <+135>: movq   (%rax), %rax
+    # check for equality
+    0x100000dca <+138>: cmpq   -0x28(%rbp), %rax
+    0x100000dce <+142>: jne    0x100000ddd               ; <+157>
+    ...
+    0x100000ddc <+156>: retq
+    ...
+    # handle failure
+    0x100000ddd <+157>: callq  0x100000f46               ; symbol stub for: __stack_chk_fail

@@ -1,0 +1,21 @@
+Converting decimal to binary
+
+14.75
+
+1. Separate the fractional part from the whole part
+14.75 - 14 = 0.75
+
+2. Convert the whole number to binary
+14 = 0b1110
+
+3. Multiply by 2 and continue converting the whole number part to binary
+0.75 = 3/4
+
+3/4 * 2 = 6/4   1
+2/4 * 2 = 4/4   1
+
+4. Result
+1110.11
+
+
+

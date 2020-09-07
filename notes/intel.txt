@@ -1,0 +1,201 @@
+https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures
+
+    1978        8086/8088 
+--------------------------------------------------------------------------
+- 16 bit processor
+- introduced segmentation, whereby a segment register points to a 64KB addressable segment of memory
+- without switching segments, 4 segment registers meant 256KB addressable bytes of memory
+- a 16-bit pointer combined with a segment register meant 20 bits of address space, or up to 1M bytes
+
+    1982        286
+--------------------------------------------------------------------------
+- introduced protected mode, using the segment registers to point to entries in a descriptor table
+- descriptors provided a 24 bit base address with a physical memory size of up to 16MB
+- support for virtual memory through segment swapping
+- protection mechanisms:
+    * segment limit checking
+    * read-only execute-only segment options
+    * four privelege levels
+
+    1985        386
+--------------------------------------------------------------------------
+- first 32 bit processor in IA-32 family
+- introduced 32 bit registers for operands and addressing
+- lower half of the registers retain properties of 16 bit registers of earlier generations for backwards compat.
+- virtual-8086 mode
+- supports
+    * 32-bit address bus for up to 4GB of memory
+    * segmented memory model or a flat memory model
+    * paging, with 4KB page size
+    * parallel stages
+
+    1989        486
+--------------------------------------------------------------------------
+- improved parallel execution capacity with 5 pipelined stages
+- added
+    * 8KB on-chip L1 cache 
+    * integrated x87 FPU
+    * power saving/system management
+
+    1993        Pentium
+--------------------------------------------------------------------------
+- added second execution pipeline, and achieved superscalar performance in doing so (superscalar = greater than 1 instruction per clock cycle in this context)
+- added second 8KB L1 cache, one for code and one for instructions, MESI protocol for write-back
+- added branch prediction with an on-chip branch table for increasing loop construct performance
+- also
+    * 4KB and now, 4MB, page sizes
+    * dual processor mode
+    * later on, MMX technology (SIMD, single-instruction multiple-data, to operate in parallel on 64 bit registers containing multiple integers
+
+    1995-1999   P6 Family 
+--------------------------------------------------------------------------
+- tried to set new performance standards above the Pentium, but using the same manufactoring process (BICMOS)
+- pentium pro, pentium 2, pentium 2 xeon, celeron, pentium 3, pentium 3 xeon
+- pentium pro: 
+    * ~3 instructions per clock cycle
+    * introduced dynamic execution features of superscalar implementation (micro-data flow analysis, out-of-order execution, branch prediction, and speculative execution)
+    * added a 256KB L2 cache
+- pentium 2:
+    * low power states such as AutoHALT, Stop-Grant, Sleep, and Deep Sleep conserve power when idles
+    * expanded L1 and L2 caches
+- pentium 2 xeon
+    * "premium" characteristics of predecessors, including:
+    * 4-way and 8-way scalability (additional pipelines? or cores?)
+    * 2MB L2 cache
+- celeron
+    * family focused "value" PC market segment
+- pentium 3 processor
+    * introduced SIMD extensions (SSE), which introduced 128-bit registers and the ability to perform SIMD operations on single-precision floating point values
+
+    2000-2006   Pentium 4 Family
+--------------------------------------------------------------------------
+- based on NetBurst micro-architecture
+- the pentium 4 introduced SSE2
+- the pentium 4 3.40 GHz supporting Hyper-Threading introduced SSE3
+- IA-64 was introduced in Pentium 4 Extreme Edition 
+- Intel Virtualization Technology was intorduced in the Intel Pentium 4 processor 672 and 662 series
+
+    2001-2007   Xeon
+--------------------------------------------------------------------------
+- based on NetBurst, with exceptions
+- designed for multi-processor server systems and high-performance workstations
+- Xeon MP introduced Hyper-Threading
+- 800Mhz System Bus?
+- 5100 series introduced Core micro-architecture, and dual-core technology
+- 5300 series was quad-core
+
+    2003-2006   Pentium M
+--------------------------------------------------------------------------
+- low power mobile processor family
+- designed to extend battery life and be used in smaller form factors
+- supports dynamic execution (mentioned above)
+- On-die 32KB instruction cache and 32KB write-back data cache
+- On-die L2 cache (up to 2MB) w/ Advanced Transfer Cache Architecture
+- MMX, SIMD, SSE2
+
+    2005        Pentium Extreme Edition
+--------------------------------------------------------------------------
+- introduced dual-core technology, hardware multi-threading support
+- NetBurst, SSE, SSE2, SSE3, Hyper-Threading, and IA-64
+
+    2006-2007   Core Duo & Core Solo
+--------------------------------------------------------------------------
+- power efficient dual-core performance
+- micro-architectural enhancements over Pentium M
+- Intel Smart Cache, for efficient sharing between cores
+- dynamic power coordination, and deeper sleep for reduced power
+- thermal manager 
+- Xeon LV is based on the same microarchitecture as the Core Duo
+
+    2006        Xeon 5100, 5300 and Core 2 Family
+--------------------------------------------------------------------------
+- Xeon 3000, 3200, 5100, 5300, and 7300, and the Pentium Dual-Core, Core 2 Extreme, Core 2 Quad, and Core 2 Duo support IA-64, and are all built on the Core microarchitecture
+- Wide Dynamic Execution, Intelligent Power Capability, Advanced Smart Cache, Smart Memory Access, Advanced Digital Media Boost (multiple generations of SSE extensions)
+- 5300, Core 2 Extreme QX6800, and Core 2 Quad support quad-core 
+
+    2007        Xeon 5200, 5400, 7400 Series and Core 2 Family 
+--------------------------------------------------------------------------
+- support IA-64
+- "Enhanced" Core micro-architecture
+    * radix-16 divider, faster OS primitves for dynamic execution
+    * Advanced Smart Cache with 50% larger L2 cache and 50% increase in way-set associativity
+    * 128-bit shuffler engine to improve performance of SSE4
+    * Xeon 5400 and Core 2 Quad Q9000 Series support quad-core 
+    * Xeon 7400 up to six cores, and an L3 cache up to 16MB
+
+    2008        Atom Family
+--------------------------------------------------------------------------
+- used the Atom microarch 
+- minimizes power consumption, improves battery life, and enables small form factors
+- D2000, N200, E2000, C1000
+- SpeedStep Technology, Hyper-Threading Technology
+- Deep Power Down, and Dynamic Cache Sizing
+- included ISA extensions up and including Supplemental Streaming SIMD extensions 3 (SSSE3)
+- IA-64
+
+    2013        Atom Family Based on Silvermont Microarchitecture
+--------------------------------------------------------------------------
+- C2xxx, E3xxx, S1xxx are based on Silvermont, which added further SS extensions (SSE4.2, AESNI, PCLMULQDQ)
+
+    2008        Core i7
+--------------------------------------------------------------------------
+- IA-64 support
+- based on Nehalem micro-architecture
+- Core i7 and Xeon 5500 included
+    * Turbo Boost (scales performance based on temperature)
+    * HyperThreading, with quad-core (four cores, eight threads)
+    * Dedicated Power Control
+    * Integrated memory controll supporting three channel DDR3 memory
+    * 8MB inclusive Smart Cache
+    * QuickPath interconnect
+    * SSE4.2 and SSE4.1 
+    * Second gen. Virtualization Tech
+
+    2010        Xeon 7500
+--------------------------------------------------------------------------
+- based on Nehalem
+- supports all of the Core i7 features plus:
+    * up to eight cores per processor package
+    * 24MB inclusive Smart Cache
+    * Scalable Memory Interconnect (SMI) with 7500 Scalable Memory Buffer
+    * Advanced RAS (machine check architecture)
+
+    2010        2010 Core Family
+--------------------------------------------------------------------------
+- Turbo Boost and HyperThreading
+- spans i7, i5, and i3, and based on Westmere microarchitecture
+- On-die integration of integrated graphics
+- instruction set support up to AESNI, PCLMULQDQ, SSE4.2 and SSE4.1
+
+    2010        Xeon 5600 
+--------------------------------------------------------------------------
+- based on Westmere (32 nm)
+- up to six cores per processor
+- up to 12MB enhanced smart cache
+- AESNI, PCLMULQDQ, SSE4.2 and SSE4.1
+
+    2011        Second Gen. Core Family
+--------------------------------------------------------------------------
+- Core i7, i5, i3
+- based Sandy Bridge microarch (32 nm)
+- i5 and i7 supported Turbo Boost
+- Hyper Threading
+- Smart Cache and integrated memory controller
+- Process graphics and features like Quick Sync Video and Insider 
+- Instruction set support for AVX, AESNI, PCLMULQDQ, SSE4.2, and SSE4.1
+- Xeon E3-1200 based on Sandy Bridge
+- Xeon E5-2400/1400 based on Sandy Bridge-EP
+- Xeon E5-4600/2600/1600 based on Sandy Bridge-EP
+
+    2012        Third Gen. Core Family
+--------------------------------------------------------------------------
+- Core i7, i5, i3
+- based on Ivy Bridge microarch 
+- Xeon E7-8800/4800/28000 v2, and E3-1200 v2 are also based on Ivy Bridge
+
+    2013        Fourth Gen. Core Family
+--------------------------------------------------------------------------
+- Core i7, i5, i3
+- based on Haswell microarch
+
+
