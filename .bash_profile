@@ -66,7 +66,8 @@ rx_to_rx() {
 }
 
 motd() {
-    cat $(find ~/.motd -type f | sort -R | head -1)
+    local file=$(find -L ~/.motd -type f | sort -R | head -1)
+    [[ -n "$file" ]] && cat "$file"
 }
 
 motd
