@@ -1,0 +1,20 @@
+CMOV(?)   conditional move if
+E Z                 equal / zero   
+NE NZ               not equal / not zero
+A NBE               above / not below or equal
+AE NB               above or equal / not below 
+B NAE               below / not above or equal
+BE NA               below or equal / not above
+G NLE               greater / not less or equal
+GE NL               greater or equal / not less
+L NGE               less / not greater or equal
+LE NG               less or equal / not greater
+C                   carry
+NC                  not carry
+O                   overflow
+NO                  not overflow
+S                   sign (negative)
+NS                  not sign (non-negative)
+P PE                parity / parity even
+NP PO               not parity / parity odd
+

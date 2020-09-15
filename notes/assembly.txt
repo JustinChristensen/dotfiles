@@ -1,40 +1,73 @@
 program counter relative jump:
 
-handle_type:
-    100000a40:       
-    ...
-    100000aa8:	e9 82 00 00 00 	jmp	130 <_handle_type+0xef>     
-                ^  ^                    ^                 ^
-                |  |                    |                 | 0xa40 + 0xef = 0xaad + 0x82 = 0xb2f
-                |  |                    | 0x82            
-                |  |
-                |  | offset +0x82 = offset +130    
-                |  
-                | opcode e9
-    100000aad:
-    ...
-    100000b2f:
+    handle_type:
+        100000a40:       
+        ...
+        100000aa8:	e9 82 00 00 00 	jmp	130 <_handle_type+0xef>     
+                        ^  ^                    ^                 ^
+                        |  |                    |                 | 0xa40 + 0xef = 0xaad + 0x82 = 0xb2f
+                        |  |                    | 0x82            
+                        |  |
+                        |  | offset +0x82 = offset +130    
+                        |  
+                        | opcode e9
+        100000aad:
+        ...
+        100000b2f:
 
 
 stack protector and lldb disas syntax:
 
-(lldb) disas -m -n stackfib                                                                                                            arr`stackfib:
-    0x100000d40 <+0>:   pushq  %rbp
-    0x100000d41 <+1>:   movq   %rsp, %rbp
-    ...
-    # store the canary value on the stack
-    0x100000d52 <+18>:  movq   0x2af(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
-    0x100000d59 <+25>:  movq   (%rax), %rax
-    0x100000d5c <+28>:  movq   %rax, -0x28(%rbp)
-    ...
-    # load the canary value and the stack canary value
-    0x100000dc0 <+128>: movq   0x241(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
-    0x100000dc7 <+135>: movq   (%rax), %rax
-    # check for equality
-    0x100000dca <+138>: cmpq   -0x28(%rbp), %rax
-    0x100000dce <+142>: jne    0x100000ddd               ; <+157>
-    ...
-    0x100000ddc <+156>: retq
-    ...
-    # handle failure
-    0x100000ddd <+157>: callq  0x100000f46               ; symbol stub for: __stack_chk_fail
+    (lldb) disas -m -n stackfib                                                                                                            arr`stackfib:
+        0x100000d40 <+0>:   pushq  %rbp
+        0x100000d41 <+1>:   movq   %rsp, %rbp
+        ...
+        # store the canary value on the stack
+        0x100000d52 <+18>:  movq   0x2af(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
+        0x100000d59 <+25>:  movq   (%rax), %rax
+        0x100000d5c <+28>:  movq   %rax, -0x28(%rbp)
+        ...
+        # load the canary value and the stack canary value
+        0x100000dc0 <+128>: movq   0x241(%rip), %rax         ; (void *)0x00007fff9c85e070: __stack_chk_guard
+        0x100000dc7 <+135>: movq   (%rax), %rax
+        # check for equality
+        0x100000dca <+138>: cmpq   -0x28(%rbp), %rax
+        0x100000dce <+142>: jne    0x100000ddd               ; <+157>
+        ...
+        0x100000ddc <+156>: retq
+        ...
+        # handle failure
+        0x100000ddd <+157>: callq  0x100000f46               ; symbol stub for: __stack_chk_fail
+
+generate intel assembly with clang:
+
+    cc -masm=intel -O -S notes/write.c
+
+basic hello world:
+
+[wroathe@mordor:euler] (master) $ objdump -macho -s -d multiples_of_3_and_5
+multiples_of_3_and_5:
+(__TEXT,__text) section
+exit:
+100000fc8:	b8 01 00 00 02	movl	$SYS_EXIT, %eax
+100000fcd:	bf 64 00 00 00	movl	$SUCCESS, %edi
+100000fd2:	0f 05	syscall
+write:
+100000fd4:	bf 01 00 00 00	movl	$STDOUT, %edi
+100000fd9:	48 8d 35 20 00 00 00	leaq	hello(%rip), %rsi
+100000fe0:	ba 0e 00 00 00	movl	$hello_len, %edx
+100000fe5:	b8 04 00 00 02	movl	$SYS_WRITE, %eax
+100000fea:	0f 05	syscall
+100000fec:	41 ff e0	jmpq	*%r8
+start:
+100000fef:	4c 8d 05 05 00 00 00	leaq	do_exit(%rip), %r8
+100000ff6:	e9 d9 ff ff ff	jmp	write
+do_exit:
+100000ffb:	e9 c8 ff ff ff	jmp	exit
+Contents of section __text:
+ 100000fc8 b8010000 02bf6400 00000f05 bf010000  ......d.........
+ 100000fd8 00488d35 20000000 ba0e0000 00b80400  .H.5 ...........
+ 100000fe8 00020f05 41ffe04c 8d050500 0000e9d9  ....A..L........
+ 100000ff8 ffffffe9 c8ffffff                    ........
+Contents of section __data:
+ 100001000 68656c6c 6f2c2077 6f726c64 210a      hello, world!.              # 0x68 0x65 0x6c are 'h', 'e', and 'l' respectively 0x0a is \n

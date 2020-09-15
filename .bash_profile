@@ -65,6 +65,12 @@ rx_to_rx() {
     echo "obase=$2; ibase=$1; $3" | bc
 }
 
+motd() {
+    cat $(find ~/.motd -type f | sort -R | head -1)
+}
+
+motd
+
 ubuntu() {
     docker run --rm -it -v "$(pwd):/home/wroathe/pwd" "$@" ubuntu-dev 
 }

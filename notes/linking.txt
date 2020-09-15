@@ -1,0 +1,3 @@
+OSX linker architecture:
+
+https://opensource.apple.com/source/ld64/ld64-450.3/doc/design/linker.html

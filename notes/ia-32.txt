@@ -1,0 +1,104 @@
+Modes of Operation:
+
+- protected mode is the native mode
+
+Memory Models:
+
+flat
+- memory appears to a program as a single continuous address space
+- called the "linear address space"
+- byte address in the linear address space is called a "linear address"
+- can be paged
+
+segmented
+- memory appears to a program asa  group of independent address spaces
+- addresses are a logical combination of a segment selector + an offset, e.g. SS (stack segment) + 5112
+- these logical addresses are sometimes referred to as "far pointers"
+- in IA-32 programs can address up to 16383 segments of different sizes/types, and each segment can be as large as 2^32 bytes
+- segmentation offers protection against things like having a program's stack grow into another area of a linear address space
+- can be paged
+
+real-address mode
+- the memory model of the 8086 processor
+- uses a specific form of segmented memory where the program and operating system see an array of segments up 
+  to 64KB in size occupying a linear address space
+- maximum size of the linear address space is 2^20 bytes
+
+Modes of Operation vs Memory Model:
+- when multitasking is enabled, individual tasks can use different memory models, i.e. it need not be a system-wide change
+- real-address mode only supports real-address mode memory model
+- in 64-bit mode segmentation is generally disabled (but not completely), and the memory model used is the "flat" model above
+    * flat 64-bit linear-address space
+    * CS, DS, ES, and SS all point to 0 in the 64-bit linear address space
+    * segmented and real-address mode are not available in 64-bit mode
+
+Address and Operand Sizes
+- for 32-bit and 16-bit, segment descriptor for currently executing code segment defines default address and operand size
+    * TODO: look into setting the default address size in GNU AS
+- in 64-bit mode the default address size is 64 bits and the default operand size is 32 bits
+- defaults can be overridden on an instruction-by-instruction prefix with a prefix, like 66H or 67H
+- prefixes are required for SIMD opcode extensions 
+    * operand-size prefix: 0x66
+    * address-size prefix: 0x67
+- for 64/64, operand and address size respectively, set the REX.W Prefix
+
+Data Types
+- 1, 2, 4, 8, 16 bytes
+- words, doublewords, and quadwords need not be aligned on natural boundaries
+- natural boundaries are are even numbered addresses, addresses divisible by four, and addresses divisible by 8, respectively
+- natural alignment improves performance, nonetheless
+    * processor requires two memory accesses to make an unaligned access, TODO: test
+- some instructions operating on double quadwords will generate a general-protection exception if access is unaligned
+- signed/unsigned, single precision (32-bit), or double-precision (64-bit), or double-extended precision (80-bit) w/ SSE or AVX
+- IEEE-754 Binary Floating-Point
+- pointers
+    * non 64-bit: near or far, where a near pointer is the offset with an implied segment selector, and a far pointer is the segment selector and offset combination
+    * 64-bit mode: everything is usually a near pointer, segments implicitly overlap from 0, but far pointers are possible for 16/16 16/32 and 16/64
+- bit fields (32 bits), can begin at any position of any byte
+- bit strings and byte (or multiple byte) strings
+- packed SIMD data (64 bit or 128 bit)
+- packed (4-bit) or unpacked (1 byte) binary coded decimals
+- real numbers and floating-point
+- the biasing constant is chosen so that the smallest normalized number can be reciprocated without overflow
+- signed zero, denormalized finite numbers, normalized finite numbers, signed infinities, NaNs, and indefinite numbers
+- signed zeros have been provided to aid in implementing interval arithmetic
+- the sign of a zero may indicate the direction from which underflow occurred, or it may indicate the sign of an ∞ that has been reciprocated 
+- two classes of NaNs: quiet NaNs and signaling NaNs
+    * quiet NaN has most-significant fraction bit set, signaling NaN doesn't
+    * signaling NaNs never result from a floating point operation, and must be inserted by software
+- round to nearest rounding mode produces the most statistically unbiased estimate of the true result
+- round up and round down are termed directed rounding and help with interval arithmetic
+- when the processor needs to round, i.e. it produces an inexact result, the "inexact flag" (PE) is set
+    * 2-bit rounding control field (RC) in x87 FPU register or MXCSR register
+- floating point exceptions:
+    * invalid operation (#I)
+    * divide-by-zero (#Z)
+    * denormalized operand (#D)
+    * numeric overflow (#O)
+    * numeric underflow (#U)
+    * inexact result (rounding needed) (#P)     #P is a shorthand for exception conditions
+- mask bits control result of exception conditions
+    * if the mask bit is set, produce a defined result
+    * otherwise, invoke a software exception handler 
+    * exception flags and mask bits are implemented in the x87 status and control word, and in the MXCSR register for SSE
+    * mask bits seem to be set by default
+
+mxcsr state 
+
+default at reset: 0x1f80
+0000000000000000000 111111 0 000000
+                    ^        ^ 
+                    |        | flag bits
+                    |
+                    | mask bits
+
+- see 4.9.1 for floating point exception behavior
+- when multiple exceptions occur (for instance, dividing a signaling NaN by zero), then the process may handle only the higher priority exception (the invalid operand exception for the sNAN)
+- precendence goes:
+    1. invalid operation (see conditions in 4.9.2)
+    2. qNaN (not an exception, but handled with high precedence), e.g. qnan / 0 == qnan and not / 0
+    3. denormal operand exception
+    4. numeric overflow or underflow exceptions
+    5. inexact result exception
+
+
