@@ -1,3 +1,7 @@
+as -static -Wall -Wextra -g -o multiples_of_3_and_5.o 01-multiples_of_3_and_5.s
+ld -static -o multiples_of_3_and_5 multiples_of_3_and_5.o
+
+dsymutil multiples_of_3_and_5
 See: /usr/include/mach-o/loader.h
 
 [wroathe@mordor:euler] (master) $ hexdump multiples_of_3_and_5
@@ -66,7 +70,7 @@ See: /usr/include/mach-o/loader.h
 00010c0 01 00 00 00 2e 01 00 00 66 0f 00 00 01 00 00 00   |
 00010d0 c2 00 00 00 24 01 00 00 66 0f 00 00 01 00 00 00   |
 00010e0 01 00 00 00 24 00 00 00 0d 00 00 00 00 00 00 00   |
-00010f0 01 00 00 00 4e 01 00 00 0d 00 00 00 00 00 00 00   | -- symbol table
+00010f0 01 00 00 00 4e 01 00 00 0d 00 00 00 00 00 00 00   | -- symbol table (part of linkedit)
 0001100 01 00 00 00 2e 01 00 00 73 0f 00 00 01 00 00 00   |
 0001110 c8 00 00 00 24 01 00 00 73 0f 00 00 01 00 00 00   |
 0001120 01 00 00 00 24 00 00 00 2c 00 00 00 00 00 00 00   |
@@ -94,7 +98,7 @@ See: /usr/include/mach-o/loader.h
 0001270 75 6c 74 69 70 6c 65 73 00 2f 55 73 65 72 73 2f   |
 0001280 77 72 6f 61 74 68 65 2f 44 65 76 65 6c 6f 70 6d   |
 0001290 65 6e 74 2f 65 75 6c 65 72 2f 00 30 31 2d 6d 75   |
-00012a0 6c 74 69 70 6c 65 73 5f 6f 66 5f 33 5f 61 6e 64   | -- ?
+00012a0 6c 74 69 70 6c 65 73 5f 6f 66 5f 33 5f 61 6e 64   | -- string table (part of linkedit)
 00012b0 5f 35 2e 73 00 2f 55 73 65 72 73 2f 77 72 6f 61   |
 00012c0 74 68 65 2f 44 65 76 65 6c 6f 70 6d 65 6e 74 2f   |
 00012d0 65 75 6c 65 72 2f 6d 75 6c 74 69 70 6c 65 73 5f   |
