@@ -1,0 +1,26 @@
+Intel Interrupt Descriptor Table (IDT) Predefined Handlers
+Vector      Mnemonic    Description             Source
+0           #DE         Divide Error            DIV/IDIV insts.
+1           #DB         Debug                   Any code or data ref.
+2                       NMI Interrupt           Non-maskable external interrupt
+3           #BP         Breakpoint              INT3 inst.
+4           #OF         Overflow                INTO inst.
+5           #BR         BOUND Range Exceeded    BOUND inst.
+6           #UD         Invalid/Undef Opcode    UD inst. or reserved opcode
+7           #NM         Device Not Available    Floating-point or WAIT/FWAIT inst. (no math coprocessor)
+8           #DF         Double Fault            Any instruction that can generate an exception, an NMI, or an INTR
+9           #MF         CoProc. Seg. Overrun    Floating-point instructions (reserved)
+10          #TS         Invalid TSS             Task switch or TSS access
+11          #NP         Seg. Not Present        Loading segment registers or accessing system segments
+12          #SS         Stack Seg. Fault        Stack operatings and SS register loads
+13          #GP         General Protection      Any memory refererence or other protection checks
+14          #PF         Page Fault              Any memory reference
+15                      Reserved               
+16          #MF         Floating-Point Error    Floating-point or WAIT/FWAIT inst. (math fault)
+17          #AC         Alignment Check         Any data reference in memory
+18          #MC         Machine Check           Model dependent error codes and source
+19          #XM         SIMD Fl. Point Ex.      SIMD Floating-point instructions
+20          #VE         Virtualization Ex.      EPT violations
+21          #CP         Control Prot. Ex.       RET/IRET/RSTORSSP/SETSSBSY instructions with CET enabled (shadow stacks)
+22-31                   Reserved
+32-255                  Maskable Interrupts     External interrupts

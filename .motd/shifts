@@ -1,0 +1,10 @@
+shifts 
+SAR         shift arithmetic right
+SHR         shift logical right
+SAL/SHL     shift arithmetic left / shift logical left          (same opcode)
+SHRD        shift right double
+SHLD        shift left double
+ROR         rotate right
+ROL         rotate left
+RCR         rotate through carry right
+RCL         rotate through carry left

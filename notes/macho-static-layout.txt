@@ -1,0 +1,289 @@
+See: /usr/include/mach-o/loader.h
+
+[wroathe@mordor:euler] (master) $ hexdump multiples_of_3_and_5
+0000000 cf fa ed fe 07 00 00 01 03 00 00 00 02 00 00 00 --| -- Mach Header
+0000010 07 00 00 00 20 02 00 00 01 00 00 00 00 00 00 00 --|
+
+0000020 19 00 00 00 48 00 00 00 5f 5f 50 41 47 45 5a 45 --|
+0000030 52 4f 00 00 00 00 00 00 00 00 00 00 00 00 00 00   | -- Load command 0 (72)
+0000040 00 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00   |
+0000050 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 --|
+
+0000060 00 00 00 00 00 00 00 00 19 00 00 00 98 00 00 00 --|
+0000070 5f 5f 54 45 58 54 00 00 00 00 00 00 00 00 00 00   |
+0000080 00 00 00 00 01 00 00 00 00 10 00 00 00 00 00 00   |
+0000090 00 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00   |
+00000a0 05 00 00 00 05 00 00 00 01 00 00 00 00 00 00 00   | -- Load command 1 (152)
+00000b0 5f 5f 74 65 78 74 00 00 00 00 00 00 00 00 00 00   |
+00000c0 5f 5f 54 45 58 54 00 00 00 00 00 00 00 00 00 00   |
+00000d0 59 0f 00 00 01 00 00 00 a7 00 00 00 00 00 00 00   |
+00000e0 59 0f 00 00 00 00 00 00 00 00 00 00 00 00 00 00   |
+00000f0 00 04 00 80 00 00 00 00 00 00 00 00 00 00 00 00 --|
+
+0000100 19 00 00 00 48 00 00 00 5f 5f 4c 49 4e 4b 45 44 --|
+0000110 49 54 00 00 00 00 00 00 00 10 00 00 01 00 00 00   | -- Load command 2 (72)
+0000120 00 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00   |
+0000130 20 03 00 00 00 00 00 00 01 00 00 00 01 00 00 00 --|
+
+0000140 00 00 00 00 00 00 00 00 02 00 00 00 18 00 00 00 --| -- Load command 3 (24)
+0000150 00 10 00 00 23 00 00 00 30 12 00 00 f0 00 00 00 --|
+
+0000160 1b 00 00 00 18 00 00 00 e4 92 93 53 6e 7c 33 c3 --| -- Load command 4 (24)
+
+0000170 93 bb d3 3f c4 07 ec 38 2a 00 00 00 10 00 00 00 --| -- Load command 5 (16)
+
+0000180 00 00 00 00 00 00 00 00 05 00 00 00 b8 00 00 00 --| -- Load command 6 (184)
+0000190 04 00 00 00 2a 00 00 00 00 00 00 00 00 00 00 00   |
+00001a0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   |
+*                                                         |
+0000210 00 00 00 00 00 00 00 00 da 0f 00 00 01 00 00 00   |
+0000220 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 --|
+*                                                           ~ 3376 bytes of zeros?
+0000f50 00 00 00 00 00 00 00 00 00 b8 01 00 00 02 bf 00 --|
+0000f60 00 00 00 0f 05 c3 bf 01 00 00 00 b8 04 00 00 02   |
+0000f70 0f 05 c3 41 ba 01 00 00 00 b2 0a 88 17 31 d2 89   |
+0000f80 f0 41 bb 0a 00 00 00 48 ff cf 41 ff c2 41 f7 f3   |
+0000f90 80 c2 30 88 17 31 d2 85 c0 7f ec 44 89 d0 c3 31   |
+0000fa0 d2 f7 f7 85 d2 c3 31 db b9 03 00 00 00 89 c8 bf   | -- code section
+0000fb0 03 00 00 00 e8 e6 ff ff ff 74 10 89 c8 bf 05 00   |
+0000fc0 00 00 e8 d8 ff ff ff 74 02 eb 02 01 cb ff c1 81   |
+0000fd0 f9 e8 03 00 00 72 d6 89 d8 c3 e8 c7 ff ff ff 48   |
+0000fe0 89 e7 48 83 ec 10 89 c6 e8 86 ff ff ff 48 89 fe   |
+0000ff0 89 c2 e8 6f ff ff ff 48 83 c4 10 e8 59 ff ff ff --|
+
+0001000 1c 00 00 00 0e 01 00 00 59 0f 00 00 01 00 00 00 --|
+0001010 21 00 00 00 0e 01 00 00 66 0f 00 00 01 00 00 00   |
+0001020 27 00 00 00 0e 01 00 00 73 0f 00 00 01 00 00 00   |
+0001030 33 00 00 00 0e 01 00 00 9f 0f 00 00 01 00 00 00   |
+0001040 3b 00 00 00 0e 01 00 00 a6 0f 00 00 01 00 00 00   |
+0001050 49 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00   |
+0001060 6b 00 00 00 64 00 00 00 00 00 00 00 00 00 00 00   |
+0001070 85 00 00 00 66 03 01 00 78 4c 6a 5f 00 00 00 00   |
+0001080 01 00 00 00 2e 01 00 00 59 0f 00 00 01 00 00 00   |
+0001090 bd 00 00 00 24 01 00 00 59 0f 00 00 01 00 00 00   |
+00010a0 01 00 00 00 24 00 00 00 0d 00 00 00 00 00 00 00   |
+00010b0 01 00 00 00 4e 01 00 00 0d 00 00 00 00 00 00 00   |
+00010c0 01 00 00 00 2e 01 00 00 66 0f 00 00 01 00 00 00   |
+00010d0 c2 00 00 00 24 01 00 00 66 0f 00 00 01 00 00 00   |
+00010e0 01 00 00 00 24 00 00 00 0d 00 00 00 00 00 00 00   |
+00010f0 01 00 00 00 4e 01 00 00 0d 00 00 00 00 00 00 00   | -- symbol table
+0001100 01 00 00 00 2e 01 00 00 73 0f 00 00 01 00 00 00   |
+0001110 c8 00 00 00 24 01 00 00 73 0f 00 00 01 00 00 00   |
+0001120 01 00 00 00 24 00 00 00 2c 00 00 00 00 00 00 00   |
+0001130 01 00 00 00 4e 01 00 00 2c 00 00 00 00 00 00 00   |
+0001140 01 00 00 00 2e 01 00 00 9f 0f 00 00 01 00 00 00   |
+0001150 d4 00 00 00 24 01 00 00 9f 0f 00 00 01 00 00 00   |
+0001160 01 00 00 00 24 00 00 00 07 00 00 00 00 00 00 00   |
+0001170 01 00 00 00 4e 01 00 00 07 00 00 00 00 00 00 00   |
+0001180 01 00 00 00 2e 01 00 00 a6 0f 00 00 01 00 00 00   |
+0001190 dc 00 00 00 24 01 00 00 a6 0f 00 00 01 00 00 00   |
+00011a0 01 00 00 00 24 00 00 00 34 00 00 00 00 00 00 00   |
+00011b0 01 00 00 00 4e 01 00 00 34 00 00 00 00 00 00 00   |
+00011c0 01 00 00 00 2e 01 00 00 da 0f 00 00 01 00 00 00   |
+00011d0 ea 00 00 00 24 01 00 00 da 0f 00 00 01 00 00 00   |
+00011e0 01 00 00 00 24 00 00 00 26 00 00 00 00 00 00 00   |
+00011f0 01 00 00 00 4e 01 00 00 26 00 00 00 00 00 00 00   |
+0001200 01 00 00 00 64 01 00 00 00 00 00 00 00 00 00 00   |
+0001210 02 00 00 00 03 01 10 00 00 00 00 00 01 00 00 00   |
+0001220 16 00 00 00 0f 01 00 00 da 0f 00 00 01 00 00 00 --|
+
+0001230 20 00 5f 5f 6d 68 5f 65 78 65 63 75 74 65 5f 68 --|
+0001240 65 61 64 65 72 00 73 74 61 72 74 00 65 78 69 74   |
+0001250 00 77 72 69 74 65 00 75 69 6e 74 5f 74 6f 5f 73   |
+0001260 74 72 00 64 69 76 69 64 65 73 00 73 75 6d 5f 6d   |
+0001270 75 6c 74 69 70 6c 65 73 00 2f 55 73 65 72 73 2f   |
+0001280 77 72 6f 61 74 68 65 2f 44 65 76 65 6c 6f 70 6d   |
+0001290 65 6e 74 2f 65 75 6c 65 72 2f 00 30 31 2d 6d 75   |
+00012a0 6c 74 69 70 6c 65 73 5f 6f 66 5f 33 5f 61 6e 64   | -- ?
+00012b0 5f 35 2e 73 00 2f 55 73 65 72 73 2f 77 72 6f 61   |
+00012c0 74 68 65 2f 44 65 76 65 6c 6f 70 6d 65 6e 74 2f   |
+00012d0 65 75 6c 65 72 2f 6d 75 6c 74 69 70 6c 65 73 5f   |
+00012e0 6f 66 5f 33 5f 61 6e 64 5f 35 2e 6f 00 65 78 69   |
+00012f0 74 00 77 72 69 74 65 00 75 69 6e 74 5f 74 6f 5f   |
+0001300 73 74 72 00 64 69 76 69 64 65 73 00 73 75 6d 5f   |
+0001310 6d 75 6c 74 69 70 6c 65 73 00 73 74 61 72 74 00 --|
+0001320
+[wroathe@mordor:euler] (master) $ llvm-objdump -macho -x -d multiples_of_3_and_5
+multiples_of_3_and_5:
+(__TEXT,__text) section
+exit:
+100000f59:	b8 01 00 00 02	movl	$33554433, %eax
+100000f5e:	bf 00 00 00 00	movl	$0, %edi
+100000f63:	0f 05	syscall
+100000f65:	c3	retq
+write:
+100000f66:	bf 01 00 00 00	movl	$1, %edi
+100000f6b:	b8 04 00 00 02	movl	$33554436, %eax
+100000f70:	0f 05	syscall
+100000f72:	c3	retq
+uint_to_str:
+100000f73:	41 ba 01 00 00 00	movl	$1, %r10d
+100000f79:	b2 0a	movb	$10, %dl
+100000f7b:	88 17	movb	%dl, (%rdi)
+100000f7d:	31 d2	xorl	%edx, %edx
+100000f7f:	89 f0	movl	%esi, %eax
+100000f81:	41 bb 0a 00 00 00	movl	$10, %r11d
+100000f87:	48 ff cf	decq	%rdi
+100000f8a:	41 ff c2	incl	%r10d
+100000f8d:	41 f7 f3	divl	%r11d
+100000f90:	80 c2 30	addb	$48, %dl
+100000f93:	88 17	movb	%dl, (%rdi)
+100000f95:	31 d2	xorl	%edx, %edx
+100000f97:	85 c0	testl	%eax, %eax
+100000f99:	7f ec	jg	0x100000f87
+100000f9b:	44 89 d0	movl	%r10d, %eax
+100000f9e:	c3	retq
+divides:
+100000f9f:	31 d2	xorl	%edx, %edx
+100000fa1:	f7 f7	divl	%edi
+100000fa3:	85 d2	testl	%edx, %edx
+100000fa5:	c3	retq
+sum_multiples:
+100000fa6:	31 db	xorl	%ebx, %ebx
+100000fa8:	b9 03 00 00 00	movl	$3, %ecx
+100000fad:	89 c8	movl	%ecx, %eax
+100000faf:	bf 03 00 00 00	movl	$3, %edi
+100000fb4:	e8 e6 ff ff ff	callq	divides
+100000fb9:	74 10	je	0x100000fcb
+100000fbb:	89 c8	movl	%ecx, %eax
+100000fbd:	bf 05 00 00 00	movl	$5, %edi
+100000fc2:	e8 d8 ff ff ff	callq	divides
+100000fc7:	74 02	je	0x100000fcb
+100000fc9:	eb 02	jmp	0x100000fcd
+100000fcb:	01 cb	addl	%ecx, %ebx
+100000fcd:	ff c1	incl	%ecx
+100000fcf:	81 f9 e8 03 00 00	cmpl	$1000, %ecx
+100000fd5:	72 d6	jb	0x100000fad
+100000fd7:	89 d8	movl	%ebx, %eax
+100000fd9:	c3	retq
+start:
+100000fda:	e8 c7 ff ff ff	callq	sum_multiples
+100000fdf:	48 89 e7	movq	%rsp, %rdi
+100000fe2:	48 83 ec 10	subq	$16, %rsp
+100000fe6:	89 c6	movl	%eax, %esi
+100000fe8:	e8 86 ff ff ff	callq	uint_to_str
+100000fed:	48 89 fe	movq	%rdi, %rsi
+100000ff0:	89 c2	movl	%eax, %edx
+100000ff2:	e8 6f ff ff ff	callq	write
+100000ff7:	48 83 c4 10	addq	$16, %rsp
+100000ffb:	e8 59 ff ff ff	callq	exit
+Sections:
+Idx Name          Size     VMA              Type
+  0 __text        000000a7 0000000100000f59 TEXT
+
+SYMBOL TABLE:
+0000000100000f59 l     F __TEXT,__text exit
+0000000100000f66 l     F __TEXT,__text write
+0000000100000f73 l     F __TEXT,__text uint_to_str
+0000000100000f9f l     F __TEXT,__text divides
+0000000100000fa6 l     F __TEXT,__text sum_multiples
+0000000000000000 l    d  *UND* /Users/wroathe/Development/euler/
+0000000000000000 l    d  *UND* 01-multiples_of_3_and_5.s
+000000005f6a4c78 l    d  *UND* /Users/wroathe/Development/euler/multiples_of_3_and_5.o
+0000000100000f59 l    d  *UND*
+0000000100000f59 l    d  *UND* exit
+000000000000000d l    d  *UND*
+000000000000000d l    d  *UND*
+0000000100000f66 l    d  *UND*
+0000000100000f66 l    d  *UND* write
+000000000000000d l    d  *UND*
+000000000000000d l    d  *UND*
+0000000100000f73 l    d  *UND*
+0000000100000f73 l    d  *UND* uint_to_str
+000000000000002c l    d  *UND*
+000000000000002c l    d  *UND*
+0000000100000f9f l    d  *UND*
+0000000100000f9f l    d  *UND* divides
+0000000000000007 l    d  *UND*
+0000000000000007 l    d  *UND*
+0000000100000fa6 l    d  *UND*
+0000000100000fa6 l    d  *UND* sum_multiples
+0000000000000034 l    d  *UND*
+0000000000000034 l    d  *UND*
+0000000100000fda l    d  *UND*
+0000000100000fda l    d  *UND* start
+0000000000000026 l    d  *UND*
+0000000000000026 l    d  *UND*
+0000000000000000 l    d  *UND*
+0000000100000000 g       *ABS* __mh_execute_header
+0000000100000fda g     F __TEXT,__text start
+Mach header
+      magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags
+MH_MAGIC_64  X86_64        ALL  0x00     EXECUTE     7        544   NOUNDEFS
+Load command 0
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __PAGEZERO
+   vmaddr 0x0000000000000000
+   vmsize 0x0000000100000000
+  fileoff 0
+ filesize 0
+  maxprot ---
+ initprot ---
+   nsects 0
+    flags (none)
+Load command 1
+      cmd LC_SEGMENT_64
+  cmdsize 152
+  segname __TEXT
+   vmaddr 0x0000000100000000
+   vmsize 0x0000000000001000
+  fileoff 0
+ filesize 4096
+  maxprot r-x
+ initprot r-x
+   nsects 1
+    flags (none)
+Section
+  sectname __text
+   segname __TEXT
+      addr 0x0000000100000f59
+      size 0x00000000000000a7
+    offset 3929
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+      type S_REGULAR
+attributes PURE_INSTRUCTIONS SOME_INSTRUCTIONS
+ reserved1 0
+ reserved2 0
+Load command 2
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __LINKEDIT
+   vmaddr 0x0000000100001000
+   vmsize 0x0000000000001000
+  fileoff 4096
+ filesize 800
+  maxprot r--
+ initprot r--
+   nsects 0
+    flags (none)
+Load command 3
+     cmd LC_SYMTAB
+ cmdsize 24
+  symoff 4096
+   nsyms 35
+  stroff 4656
+ strsize 240
+Load command 4
+     cmd LC_UUID
+ cmdsize 24
+    uuid E4929353-6E7C-33C3-93BB-D33FC407EC38
+Load command 5
+      cmd LC_SOURCE_VERSION
+  cmdsize 16
+  version 0.0
+Load command 6
+        cmd LC_UNIXTHREAD
+    cmdsize 184
+     flavor x86_THREAD_STATE64
+      count x86_THREAD_STATE64_COUNT
+   rax  0x0000000000000000 rbx 0x0000000000000000 rcx  0x0000000000000000
+   rdx  0x0000000000000000 rdi 0x0000000000000000 rsi  0x0000000000000000
+   rbp  0x0000000000000000 rsp 0x0000000000000000 r8   0x0000000000000000
+    r9  0x0000000000000000 r10 0x0000000000000000 r11  0x0000000000000000
+   r12  0x0000000000000000 r13 0x0000000000000000 r14  0x0000000000000000
+   r15  0x0000000000000000 rip 0x0000000100000fda
+rflags  0x0000000000000000 cs  0x0000000000000000 fs   0x0000000000000000
+    gs  0x0000000000000000

@@ -383,7 +383,7 @@ hilights = (
 );
 ignores = (
   { mask = "dho"; level = "ALL"; },
-  { mask = "zid"; level = "ALL"; },
+  { mask = "zid*"; level = "ALL"; },
   { mask = "twkm"; level = "ALL"; },
   { level = "JOINS PARTS QUITS MODES TOPICS"; },
   { mask = "Julius*"; level = "ALL"; }
