@@ -1,0 +1,37 @@
+Explore loaded memory image for process with lldb:
+
+    (lldb) image list
+    [  0] - - /Users/wroathe/Development/euler/a.out
+    ...
+    [ 29] - - /usr/lib/system/libsystem_kernel.dylib
+    ...
+    [ 38] - - /usr/lib/libc++.1.dylib
+
+    (lldb) image dump sections /usr/lib/system/libsystem_kernel.dylib
+    Sections for '/usr/lib/system/libsystem_kernel.dylib' (x86_64):
+      SectID     Type             Load Address                             Perm File Off.  File Size  Flags      Section Name
+      ---------- ---------------- ---------------------------------------  ---- ---------- ---------- ---------- ----------------------------
+      0x00000100 container        ***************************************  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT
+      0x00000001 code             [0xssssssssssssssss-0xeeeeeeeeeeeeeeee)  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT.__text
+      0x00000002 regular          ***************************************  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT.__const
+      0x00000003 data-cstr        ***************************************  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT.__cstring
+      0x00000004 compact-unwind   ***************************************  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT.__unwind_info
+      0x00000005 eh-frame         ***************************************  r-x  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__TEXT.__eh_frame
+      0x00000200 container        ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA
+      0x00000006 data-ptrs        ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__got
+      0x00000007 regular          ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__const
+      0x00000008 data             ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__data
+      0x00000009 regular          ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__crash_info
+      0x0000000a zero-fill        ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__common
+      0x0000000b zero-fill        ***************************************  rw-  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__DATA.__bss
+      0x00000300 container        ***************************************  r--  0x00000000 0x00000000 0x00000000 libsystem_kernel.dylib.__LINKEDIT
+
+    (lldb) di -s 0xssssssssssssssss -e 0xeeeeeeeeeeeeeeee
+    libsystem_kernel.dylib`__libkernel_init:
+        0x000000000000 <+0>:   pushq  %rbp
+        0x000000000000 <+0>:   movq   %rsp, %rbp
+        0x000000000000 <+0>:   pushq  %r15
+        0x000000000000 <+0>:   pushq  %r14
+        0x000000000000 <+0>:   pushq  %rbx
+        0x000000000000 <+0>:   pushq  %rax
+        ...

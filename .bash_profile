@@ -115,6 +115,7 @@ export PATH="/Library/TeX/texbin:$PATH"
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DYLD_LIBRARY_PATH=~/lib
+export PYTHONPATH="$(lldb -P)"
 
 # modifies PATH
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

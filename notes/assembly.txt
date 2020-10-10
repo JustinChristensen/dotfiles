@@ -43,6 +43,9 @@ generate intel assembly with clang:
 
     cc -masm=intel -O -S notes/write.c
 
+osx assembly reference:
+https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/Assembler/000-Introduction/introduction.html#//apple_ref/doc/uid/TP30000851-CH211-SW1
+
 basic hello world:
 
 [wroathe@mordor:euler] (master) $ objdump -macho -s -d multiples_of_3_and_5

@@ -1,0 +1,75 @@
+Call frame information is discussed in the DWARF standard: 
+
+http://www.dwarfstd.org/doc/DWARF5.pdf
+
+.cfi_startproc "call frame information" start of a procedure
+- instructs the GNU assembler to generate exception handling information in the eh_frame section of the binary
+
+    Contents of section __text:
+    ...
+    Contents of section __eh_frame:
+    ...
+
+This can be examined with llvm-dwarfdump with:
+
+    [wroathe@mordor:001_multiples_of_3_and_5] (master) $ llvm-dwarfdump --eh-frame m_w
+    m_w:	file format Mach-O 64-bit x86-64
+
+    .debug_frame contents:
+
+
+    .eh_frame contents:
+
+    00000000 00000014 ffffffff CIE
+      Version:               1
+      Augmentation:          "zR"
+      Code alignment factor: 1
+      Data alignment factor: -8
+      Return address column: 16
+      Augmentation data:     10
+
+      DW_CFA_def_cfa: reg7 +8
+      DW_CFA_offset: reg16 -8
+      DW_CFA_nop:
+      DW_CFA_nop:
+
+    00000018 0000001c 0000001c FDE cie=0000001c pc=ffffff38...ffffff45
+      DW_CFA_nop:
+      DW_CFA_nop:
+      DW_CFA_nop:
+      DW_CFA_nop:
+      DW_CFA_nop:
+      DW_CFA_nop:
+      DW_CFA_nop: 
+
+OSX uses compact unwind encoding in the __unwind_info section
+
+    [wroathe@mordor:001_multiples_of_3_and_5] (master) $ llvm-objdump -macho --full-contents ~/Development/compilers/src/parser_gen/parser_gen
+    Contents of section __text:
+    ...
+    Contents of section __unwind_info:
+    ...
+
+This can be examined with :
+
+[wroathe@mordor:001_multiples_of_3_and_5] (master) $ llvm-objdump -macho -u ~/Development/compilers/src/parser_gen/parser_gen
+Contents of __unwind_info section:
+  Version:                                   0x1
+  Common encodings array section offset:     0x1c
+  Number of common encodings in array:       0x0
+  Personality function array section offset: 0x1c
+  Number of personality functions in array:  0x0
+  Index array section offset:                0x1c
+  Number of indices in array:                0x2
+  Common encodings: (count = 0)
+  Personality functions: (count = 0)
+  Top level indices: (count = 2)
+    [0]: function offset=0x000009e0, 2nd level page offset=0x00000034, LSDA offset=0x00000034
+    [1]: function offset=0x00002a33, 2nd level page offset=0x00000000, LSDA offset=0x00000034
+  LSDA descriptors:
+  Second level indices:
+    Second level index[0]: offset in section=0x00000034, base function offset=0x000009e0
+      [0]: function offset=0x000009e0, encoding[1]=0x01000000
+      [1]: function offset=0x00001fc0, encoding[0]=0x01040b11
+
+

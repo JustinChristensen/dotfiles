@@ -1,0 +1,14 @@
+Intel Encoding
+
+                Prefixes   -    Opcode   -      ModR/M      -   SIB     -       Displacement    -       Immediate 
+size (bytes)    1 ea. opt.      1/2/3           1 opt.          1 opt.          1/2/4 opt.              1/2/4 opt. *
+
+ModR/M (1 byte, 3 fields)
+00      000             000
+Mod     Reg/Opcode      R/M
+
+SIB (1 byte, 3 fields)
+00      000             000
+Scale   Index           Base
+
+* Some rare instructions can take an 8 byte immediate or displacement 
