@@ -19,7 +19,7 @@
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HideActivityIndicator</key>
-	<false/>
+	<true/>
 	<key>HideMenuBarInFullscreen</key>
 	<true/>
 	<key>HideScrollbar</key>
@@ -102,7 +102,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>155 593 592 584 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1163 0 752 1177 0 0 1920 1177 </string>
+	<string>960 0 955 1177 0 0 1920 1177 </string>
 	<key>NeverWarnAboutShortLivedSessions_EBC37AD8-7CB4-4485-BC7A-1439269FC6C7</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_EBC37AD8-7CB4-4485-BC7A-1439269FC6C7_selection</key>
@@ -901,7 +901,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>7D7233C3-9980-49E5-966B-1A609BCA1143</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>63</integer>
+	<integer>90</integer>
 	<key>NoSyncNextAnnoyanceTime</key>
 	<real>588619309.05409098</real>
 	<key>NoSyncOnboardingWindowHasBeenShown</key>
@@ -1696,7 +1696,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-01T00:14:04Z</date>
+	<date>2020-11-08T17:11:56Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>

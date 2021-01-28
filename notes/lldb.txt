@@ -35,3 +35,11 @@ Explore loaded memory image for process with lldb:
         0x000000000000 <+0>:   pushq  %rbx
         0x000000000000 <+0>:   pushq  %rax
         ...
+
+Lookup symbol in loaded libraries:
+
+(lldb) image lookup -s pow -A                                                                                                          1 symbols match 'pow' in /usr/lib/system/libsystem_m.dylib:
+        Address: libsystem_m.dylib[0x****************] (libsystem_m.dylib.__TEXT.__text + 0)
+        Summary: libsystem_m.dylib`pow
+
+

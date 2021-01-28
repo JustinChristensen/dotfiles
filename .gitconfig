@@ -27,3 +27,5 @@
     emails = log --format='%aE' 
 [credential]
     helper = osxkeychain
+[pull]
+	rebase = false

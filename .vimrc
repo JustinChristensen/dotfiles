@@ -36,6 +36,7 @@ filetype indent on
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 if has('nvim')
+  Plug 'whonore/Coqtail'
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'roxma/nvim-yarp'
   Plug 'ncm2/ncm2'
@@ -74,7 +75,6 @@ set statusline+=%*
 
 let g:deoplete#enable_at_startup = 1
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 " let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
@@ -164,24 +164,21 @@ nnoremap <C-H> :Hexmode<CR>
 inoremap <C-H> <Esc>:Hexmode<CR>
 vnoremap <C-H> :<C-U>Hexmode<CR>
 
-inoremap <C-j> <C-n>
-inoremap <C-k> <C-p>
-
 " set mapleader
 let mapleader = ","
 
 " alternate
 nmap <silent> <Leader>a <C-^>
 
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    " nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
-    " nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  endif
-endfunction
+inoremap <silent> <C-j> <C-n>
+inoremap <silent> <C-k> <C-p>
+nnoremap <silent> <C-j> :<C-U>execute v:count1 'CoqNext'<CR>
+nnoremap <silent> <C-k> :<C-U>execute v:count1 'CoqUndo'<CR>
 
-autocmd FileType * call LC_maps()
+augroup vimrc
+    autocmd!
+    au BufEnter * call ncm2#enable_for_buffer()
+augroup END
 
 let g:ycm_confirm_extra_conf = 0
 

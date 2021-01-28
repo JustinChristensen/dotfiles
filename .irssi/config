@@ -110,7 +110,7 @@ chatnets = {
 };
 
 channels = (
-  { name = "##C"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##asm"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#haskell"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
@@ -377,6 +377,7 @@ settings = {
     theme = "solarized-universal";
     hilight_color = "= %R";
   };
+  "irc/core" = { skip_motd = "yes"; };
 };
 hilights = (
   { text = "wroathe"; color = "%M"; nick = "yes"; word = "yes"; }
@@ -386,5 +387,15 @@ ignores = (
   { mask = "zid*"; level = "ALL"; },
   { mask = "twkm"; level = "ALL"; },
   { level = "JOINS PARTS QUITS MODES TOPICS"; },
-  { mask = "Julius*"; level = "ALL"; }
+  { mask = "Julius*"; level = "ALL"; },
+  { mask = "mrlamont"; level = "ALL"; },
+  { mask = "Ebert"; level = "ALL"; },
+  { mask = "kish"; level = "ALL"; },
+  { mask = "kish`"; level = "ALL"; },
+  { mask = "Storyteller"; level = "ALL"; },
+  { mask = "bennet"; level = "ALL"; },
+  { mask = "pnint"; level = "ALL"; },
+  { mask = "aodn01"; level = "ALL"; },
+  { mask = "MrFlibble"; level = "ALL"; },
+  { mask = "bozoh2"; level = "ALL"; }
 );

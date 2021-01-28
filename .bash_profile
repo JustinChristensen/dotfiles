@@ -55,11 +55,73 @@ trace_temps() {
         done
     )
 }
- 
-# this doesn't properly handle whitespace in fields
-# viewcsv() {
-#     column -s, -t < "$1" | less -#2 -N -S
-# }
+
+gen_asm() {
+# Makefile
+    cat <<'EOF' > Makefile
+S_PROG := a.out
+
+AS := as
+AS_FLAGS := -g -Wall -Wextra -static
+
+LD := ld
+LD_FLAGS := -dead_strip -static
+
+$(S_PROG): main.s
+	$(AS) $(AS_FLAGS) -o $@.o $^
+	$(LD) $(LD_FLAGS) -o $@ $@.o 
+	dsymutil $@
+
+.PHONY: clean
+clean:
+	rm -rf *.o *.dSYM $(S_PROG) 
+EOF
+
+# main.s
+    cat <<'EOF' > main.s
+.p2align 4
+
+L_SYS_EXIT = 0x2000001
+L_SUCCESS = 0
+
+.global exit
+exit:
+    mov $L_SYS_EXIT, %eax
+    mov $L_SUCCESS, %edi
+    syscall
+    ret
+
+.global start
+start:
+    call exit
+EOF
+}
+
+gen_editorconfig() {
+    cat <<'EOF' > .editorconfig
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.yml]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[*.mk]
+indent_style = tab
+EOF
+}
 
 rx_to_rx() {
     echo "obase=$2; ibase=$1; $3" | bc
@@ -76,12 +138,23 @@ ubuntu() {
     docker run --rm -it -v "$(pwd):/home/wroathe/pwd" "$@" ubuntu-dev 
 }
 
-start_rohan() {
-    VBoxManage startvm --type headless Ubuntu
-}
+rohan() {
+    local CPUS=${CPUS:-2}
+    local MEM=${MEM:-2G}
+    local IMAGE=${IMAGE:-"$HOME/vms/ubuntu.img"}
+    local BOOT_CD=
 
-stop_rohan() {
-    VBoxManage controlvm Ubuntu acpipowerbutton
+    if [ -n "$1" ]; then
+        BOOT_CD="-boot once=d -cdrom $1"
+    fi
+
+    qemu-system-x86_64 \
+        -nographic \
+        -accel hvf -cpu host \
+        -smp "$CPUS" -m "$MEM" \
+        -nic user,model=virtio,hostfwd=tcp::5555-:22 \
+        -drive file="$IMAGE",format=raw \
+        $BOOT_CD
 }
 
 ####################################################################
@@ -111,11 +184,13 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
+# export PATH="$HOME/Applications/GIMP.app/Contents/MacOS:$PATH"
 
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DYLD_LIBRARY_PATH=~/lib
 export PYTHONPATH="$(lldb -P)"
+export INCL_C='/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include'
 
 # modifies PATH
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -306,3 +381,7 @@ export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
 # findsym _exit /usr/lib       
 # => /usr/lib/system/libfoo.dylib   0xefae000a _TEXT _exit
 # => /usr/lib/system/libbar.dylib   0xefaeeeea _TEXT _exit
+
+# codesign binary with hypervisor entitlement 
+# codesign --entitlements entitlement.xml -fs qemu-cert $(which qemu-system-x86_64)
+

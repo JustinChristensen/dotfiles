@@ -1,1 +1,2 @@
-pkg prefix ~/.octave
+pkg prefix ~/.octave ~/.octave;
+pkg load symbolic;

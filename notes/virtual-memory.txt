@@ -75,6 +75,6 @@ https://github.com/torvalds/linux/blob/master/include/linux/mm_types.h#L301
 278528      7ffe9a93a000-7ffe9a97e000 rw-p 00000000 00:00 0                          [stack]
 12288       7ffe9a9a9000-7ffe9a9ac000 r--p 00000000 00:00 0                          [vvar]
 8192        7ffe9a9ac000-7ffe9a9ae000 r-xp 00000000 00:00 0                          [vdso]
-    ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+    ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                          [vsyscall]
 
 
