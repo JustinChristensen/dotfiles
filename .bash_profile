@@ -139,22 +139,23 @@ ubuntu() {
 }
 
 rohan() {
+    local QEMU=${QEMU:-'qemu-system-x86_64'}
     local CPUS=${CPUS:-2}
     local MEM=${MEM:-2G}
     local IMAGE=${IMAGE:-"$HOME/vms/ubuntu.img"}
-    local BOOT_CD=
+    local BOOT_CD=${BOOT_CD:-}
 
-    if [ -n "$1" ]; then
-        BOOT_CD="-boot once=d -cdrom $1"
+    if [ -n "$BOOT_CD" ]; then
+        BOOT_CD="-boot once=d -cdrom $BOOT_CD"
     fi
 
-    qemu-system-x86_64 \
+    "$QEMU" \
         -nographic \
         -accel hvf -cpu host \
         -smp "$CPUS" -m "$MEM" \
         -nic user,model=virtio,hostfwd=tcp::5555-:22 \
         -drive file="$IMAGE",format=raw \
-        $BOOT_CD
+        $BOOT_CD $@
 }
 
 ####################################################################
