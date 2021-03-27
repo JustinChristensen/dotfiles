@@ -23,5 +23,20 @@
     "C_Cpp.updateChannel": "Insiders",
     "[haskell]": {
         "editor.renderIndentGuides": false
-    }
+    },
+    "extensions.ignoreRecommendations": true,
+    "debug.javascript.codelens.npmScripts": "never",
+    "files.exclude": {
+        "**/node_modules": true
+    },
+    "vim.vimrc.enable": true,
+    "editor.codeLens": false,
+    "mssql.connections": [
+        {
+            "server": "{{put-server-name-here}}",
+            "database": "{{put-database-name-here}}",
+            "user": "{{put-username-here}}",
+            "password": "{{put-password-here}}"
+        }
+    ]
 }

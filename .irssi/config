@@ -397,5 +397,6 @@ ignores = (
   { mask = "pnint"; level = "ALL"; },
   { mask = "aodn01"; level = "ALL"; },
   { mask = "MrFlibble"; level = "ALL"; },
-  { mask = "bozoh2"; level = "ALL"; }
+  { mask = "bozoh2"; level = "ALL"; },
+  { mask = "recursiveNode"; level = "ALL"; }
 );

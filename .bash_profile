@@ -187,7 +187,7 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
 # export PATH="$HOME/Applications/GIMP.app/Contents/MacOS:$PATH"
 
-export LDFLAGS="-L/usr/local/opt/llvm/lib"
+# export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DYLD_LIBRARY_PATH=~/lib
 export PYTHONPATH="$(lldb -P)"
@@ -209,6 +209,7 @@ set -o vi
 ####################################################################
 
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias node-global='NODE_PATH="$(npm root -g)" node'
 
 ####################################################################
 # 6. Notes
