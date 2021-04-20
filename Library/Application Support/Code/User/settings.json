@@ -9,7 +9,6 @@
     "workbench.activityBar.visible": false,
     "explorer.openEditors.visible": 0,
     "workbench.editor.enablePreview": false,
-    "window.zoomLevel": 0,
     "editor.multiCursorModifier": "ctrlCmd",
     "typescript.validate.enable": false,
     "javascript.validate.enable": false,

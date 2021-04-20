@@ -149,7 +149,11 @@ services+=' com.apple.TMHelperAgent'                         # TimeMachine
 services+=' com.apple.AMPDevicesAgent'                       # Media Platform
 services+=' com.apple.SpeechRecognitionCore.brokerd'         # Speech recognition
 services+=' com.apple.accessibility.mediaaccessibilityd'     # Media accessibility
+services+=' com.apple.AirPlayXPCHelper'                      # AirPlay
+services+=' com.apple.coreservices.useractivityd'            # Advertising
 
 for S in $services; do
     sudo launchctl disable "system/$S"
+    sudo launchctl disable "gui/501/$S"
+    sudo launchctl disable "user/501/$S"
 done
