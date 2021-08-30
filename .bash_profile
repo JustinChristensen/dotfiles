@@ -18,10 +18,12 @@
 bash_completion='/usr/local/share/bash-completion/bash_completion'
 git_completion='/usr/local/etc/bash_completion.d/git-completion.bash'
 git_prompt='/usr/local/etc/bash_completion.d/git-prompt.sh'
+pass_completion='/usr/local/Cellar/pass/1.7.4/etc/bash_completion.d/pass'
 
 [[ -f $bash_completion ]] && . $bash_completion
 [[ -f $git_completion ]] && . $git_completion
 [[ -f $git_prompt ]] && . $git_prompt
+[[ -f $pass_completion ]] && . $pass_completion
 
 ####################################################################
 # 2. Functions
@@ -54,6 +56,14 @@ trace_temps() {
             date "+%Y-%m-%dT%H:%M:%SZ $DEVICE $TEMP $UNIT" 
         done
     )
+}
+
+cat_range() {
+    local start=${1:-0}
+    local end=${2:-0}
+    local count=$(($end-$start))
+    local if=${3:+"if=$3"}
+    dd skip=$1 bs=1 count=$count $if 2>/dev/null
 }
 
 gen_asm() {
@@ -185,9 +195,7 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export PATH="/Library/TeX/texbin:$PATH"
-# export PATH="$HOME/Applications/GIMP.app/Contents/MacOS:$PATH"
-
-# export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export PATH="/usr/local/depot_tools:$PATH"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
 export DYLD_LIBRARY_PATH=~/lib
 export PYTHONPATH="$(lldb -P)"
@@ -210,6 +218,7 @@ set -o vi
 
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias node-global='NODE_PATH="$(npm root -g)" node'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 
 ####################################################################
 # 6. Notes
@@ -387,3 +396,10 @@ export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
 # codesign binary with hypervisor entitlement 
 # codesign --entitlements entitlement.xml -fs qemu-cert $(which qemu-system-x86_64)
 
+# version "1.18.0.1944-f2cae8d6b"
+# sha256 "f392aa17d6002a6159773393959cce3aced995062420a19132f95390a675cc21"
+
+# mkdir -p funcs && cat entry.json | jq '.functions[] | select(.isBlockCoverage) | .ranges[0] | "\(.startOffset) \(.endOffset)"' | sed 's|"||g' | (while read line; do cat main.js | cat_range $line > funcs/"$line.txt"; done)
+
+# chrome command line switches
+# src/chrome/common/chrome_switches.cc

@@ -3,10 +3,17 @@ servers = (
   { address = "irc.efnet.org"; chatnet = "EFNet"; port = "6667"; },
   { address = "irc.esper.net"; chatnet = "EsperNet"; port = "6667"; },
   {
+    address = "irc.libera.chat";
+    chatnet = "Libera";
+    port = "6697";
+    use_tls = "yes";
+    tls_verify = "no";
+    autoconnect = "yes";
+  },
+  { 
     address = "chat.freenode.net";
     chatnet = "Freenode";
     port = "6667";
-    autoconnect = "yes";
   },
   {
     address = "irc.gamesurge.net";
@@ -63,6 +70,11 @@ chatnets = {
     max_msgs = "4";
     max_whois = "1";
   };
+  Libera = {
+    type = "IRC";
+    usermode = "+gi";
+    autosendcmd = "/msg nickserv identify $IRSSI_PASS";
+  };
   GameSurge = {
     type = "IRC";
     max_kicks = "1";
@@ -110,8 +122,11 @@ chatnets = {
 };
 
 channels = (
-  { name = "##asm"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#haskell"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#asm"; chatnet = "Libera"; autojoin = "yes"; },
+  { name = "#haskell"; chatnet = "Libera"; autojoin = "yes"; },
+  { name = "#c"; chatnet = "Libera"; autojoin = "yes"; },
+  { name = "#javascript"; chatnet = "Libera"; autojoin = "yes"; },
+  { name = "#node.js"; chatnet = "Libera"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -385,11 +400,9 @@ hilights = (
 ignores = (
   { mask = "dho"; level = "ALL"; },
   { mask = "zid*"; level = "ALL"; },
-  { mask = "twkm"; level = "ALL"; },
   { level = "JOINS PARTS QUITS MODES TOPICS"; },
   { mask = "Julius*"; level = "ALL"; },
   { mask = "mrlamont"; level = "ALL"; },
-  { mask = "Ebert"; level = "ALL"; },
   { mask = "kish"; level = "ALL"; },
   { mask = "kish`"; level = "ALL"; },
   { mask = "Storyteller"; level = "ALL"; },
@@ -400,5 +413,17 @@ ignores = (
   { mask = "recursiveNode"; level = "ALL"; },
   { mask = "MSCoderGuy"; level = "ALL"; },
   { mask = "solvr"; level = "ALL"; },
-  { mask = "MrFlibble*"; level = "ALL"; }
+  { mask = "MrFlibble*"; level = "ALL"; },
+  { mask = "ljharb"; level = "ALL"; },
+  { mask = "Rockwood*"; level = "ALL"; },
+  { mask = "MJCD"; level = "ALL"; },
+  { mask = "TurkeyNoises"; level = "ALL"; },
+  { mask = "czarbomba"; level = "ALL"; },
+  { mask = "eryc"; level = "ALL"; },
+  { mask = "mnrmnaugh"; level = "ALL"; },
+  { mask = "plank*"; level = "ALL"; },
+  { mask = "elff"; level = "ALL"; },
+  { mask = "phasmatodea"; level = "ALL"; },
+  { mask = "eldf"; level = "ALL"; },
+  { mask = "Astarte"; level = "ALL"; }
 );

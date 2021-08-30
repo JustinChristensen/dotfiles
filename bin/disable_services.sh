@@ -47,6 +47,7 @@ services+=' com.apple.findmymacmessenger'                    # Find My Mac
 services+=' com.apple.ScreenTimeAgent'                       # Lol
 services+=' com.apple.cloudd'                                # iCloud
 services+=' com.apple.UserNotificationCenterAgent'           # Notifications
+services+=' com.apple.notificationcenterui.agent'           # Notifications
 services+=' com.apple.dt.CommandLineTools.installondemand'   # What?
 services+=' com.apple.appleseed.seedusaged'                  # Feedback Assistant
 services+=' com.apple.ap.adprivacyd'                         # Advertising

@@ -25,6 +25,8 @@ set fcs=vert:\ ,fold:-
 " always display mode
 set showmode
 
+set nomodeline
+
 " turn on syntax
 syntax on
 
@@ -32,6 +34,9 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
+
+" syntax highlighting redraw time (ms)
+set rdt=10000
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}

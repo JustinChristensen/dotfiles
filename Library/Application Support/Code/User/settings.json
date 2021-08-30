@@ -16,8 +16,12 @@
     "php.suggest.basic": false,
     "workbench.editor.labelFormat": "medium",
     "search.exclude": {
+        "**/__tests__": true,
+        "**/coverage": true,
         "**/dist": true,
-        "**/dist-newstyle": true
+        "**/dist-newstyle": true,
+        "**/docs": true,
+        "**/tmp": true
     },
     "C_Cpp.updateChannel": "Insiders",
     "[haskell]": {
@@ -25,9 +29,6 @@
     },
     "extensions.ignoreRecommendations": true,
     "debug.javascript.codelens.npmScripts": "never",
-    "files.exclude": {
-        "**/node_modules": true
-    },
     "vim.vimrc.enable": true,
     "editor.codeLens": false,
     "mssql.connections": [
@@ -37,5 +38,15 @@
             "user": "{{put-username-here}}",
             "password": "{{put-password-here}}"
         }
-    ]
+    ],
+    "files.exclude": {
+        "**/node_modules": true
+    },
+    "workbench.tree.indent": 16,
+    "editor.tabSize": 8,
+    "editor.cursorStyle": "line",
+    "editor.insertSpaces": false,
+    "editor.lineNumbers": "on",
+    "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+    "editor.wordWrap": "on"
 }

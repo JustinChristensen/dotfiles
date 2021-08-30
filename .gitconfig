@@ -6,6 +6,7 @@
     eol = lf
     excludesfile = ~/.gitignore
     ignorecase = false
+	precomposeUnicode = true
 [color]
     ui = auto
 [push]
