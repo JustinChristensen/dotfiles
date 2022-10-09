@@ -13,7 +13,7 @@
 
 	# link everything
 	cd dotfiles
-	stow .
+	stow darwin
 
 	# start a new term session
 	# run setup
@@ -22,4 +22,4 @@
 ## Uninstall
 
 	# unlink everything
-	stow -D .
+	stow -D darwin
