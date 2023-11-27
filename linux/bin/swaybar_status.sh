@@ -41,9 +41,9 @@ swaybar_status() {
     while true; do
         ((i++ % 60 == 0)) && battery=$(battery_status)
         printf "%s | %s | %s \n" \
-            "$(date_status)" \
+            "$battery" \
             "$(volume_status)" \
-            "$battery"
+            "$(date_status)"
         sleep 1
     done
 }

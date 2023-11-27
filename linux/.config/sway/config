@@ -160,6 +160,7 @@ set $term foot
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
 #
 # Resizing containers:
 #
@@ -192,16 +193,28 @@ input "type:keyboard" {
     xkb_options caps:escape
 }
 
+input "type:pointer" {
+    scroll_factor 1.6
+}
+
 input "type:touchpad" {
     tap enabled
     pointer_accel 0.8
 }
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%    
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%    
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle    
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-    
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ 
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-    
+# bindsym XF86Start
+# bindsym XF86Search
+# bindsym XF86AudioRecord
+bindsym XF86Standby exec systemctl suspend
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle    
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%    
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%    
+# fingerprint sensor
 
 # outputs
 output * scale 1 bg #222222 solid_color
@@ -217,32 +230,26 @@ bar {
     position top
     font monospace 15
 
-    # status_command \
-    #     i=0 && \
-    #     while true; do \
-    #         date_status="⏱ $(date +'%Y-%m-%d %I:%M:%S %p')"; \
-    #         ((i++ % 60 == 0)) && battery_status="⚡︎$(acpi -b | fgrep -v 'unavailable' | cut -d ':' -f2-)"; \
-    #         echo "$date_status \| $battery_status"; \
-    #         sleep 1; \
-    #     done
-    status_command swaybar_status.sh
+    # status_command swaybar_status.sh
+    swaybar_command waybar
 
     colors {
         statusline #ffffff
         background #0f0f0f
         inactive_workspace #32323200 #32323200 #5c5c5c
+        focused_workspace #ac7059 #ac7059 #ffffff
     }
 }
 
 # launchers
-set $menu2 fuzzel
-bindsym $mod+d exec $menu2
+bindsym $mod+d exec fuzzel
 bindsym $mod+shift+m exec spotify
 bindsym $mod+shift+g exec google-chrome
 bindsym $mod+shift+e exec code
-bindsym $mod+z exec swaylock -f
+# bindsym $mod+z exec systemctl suspend
+bindsym $mod+z exec loginctl lock-session
 
-set $menu dmenu_path | dmenu -fn 'noto sans' -nb '#0f0f0f' -b | xargs swaymsg exec --
+set $menu dmenu_path | dmenu -i -m 1 -fn 'noto sans' -nb '#0f0f0f' -b | xargs swaymsg exec --
 bindsym $mod+space exec $menu
 
 # tiling and colors
@@ -250,13 +257,11 @@ default_border pixel 2
 default_floating_border pixel 2
 client.focused #4c7899 #285577 #ffffff #2e9ef4 #ac7059
 
+focus_follows_mouse no
+
 exec swayidle -w \
-    timeout 600 'swaylock -f && swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f' 
-
-# todo:
-# volume buttons
-# launcher hotkeys
-
-
+    timeout 450 'loginctl lock-session' resume 'swaymsg "output * power on"' \
+    timeout 15 'if pgrep -x swaylock; then swaymsg "output * power off"; fi' resume 'swaymsg "output * power on"' \
+    lock 'playerctl pause && swaylock -f' \
+    before-sleep 'swaymsg "output * power off" && swaylock -f' \
+    after-resume 'swaymsg "output * power on"'
