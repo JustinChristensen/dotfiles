@@ -57,16 +57,16 @@ let g:clipboard = {
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'wincent/command-t', {
-    \   'tag': '5.0.3',
+    \   'tag': '5.0.5',
     \   'do': 'cd ruby/command-t/ext/command-t && ruby extconf.rb && make'
     \ }
-Plug 'altercation/vim-colors-solarized'
-Plug 'SirVer/ultisnips'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-pyclang'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'SirVer/ultisnips'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
+" Plug 'ncm2/ncm2-pyclang'
 call plug#end()
 
 " TODO: return to this
@@ -75,14 +75,14 @@ call plug#end()
 " set statusline+=%*
 
 " enable ncm2
-augroup vimrc
-    au BufEnter * silent! call ncm2#enable_for_buffer()
-augroup END
+" augroup vimrc
+"     au BufEnter * silent! call ncm2#enable_for_buffer()
+" augroup END
 
 set completeopt=noinsert,menuone,noselect
 
 " configure ncm2 for c/c++
-let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so'
+" let g:ncm2_pyclang#library_path = '/usr/lib64/libclang.so'
 
 " configure folding
 set foldenable
