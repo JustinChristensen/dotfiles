@@ -199,7 +199,10 @@ input "type:pointer" {
 
 input "type:touchpad" {
     tap enabled
+    dwt enabled
+    click_method clickfinger
     pointer_accel 0.8
+    accel_profile adaptive
 }
 
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ 
@@ -222,6 +225,10 @@ output * scale 1 bg #222222 solid_color
 # make the viewsonic the "primary" output
 output DP-3 pos 0,0
 output eDP-1 pos 3840,956
+
+# portable monitor left side
+output DP-1 pos 1920 1380
+
 focus output DP-3
 workspace 1 output DP-3 eDP-1
 
@@ -244,13 +251,19 @@ bar {
 # launchers
 bindsym $mod+d exec fuzzel
 bindsym $mod+shift+m exec spotify
-bindsym $mod+shift+g exec google-chrome
+# bindsym $mod+shift+g exec google-chrome
+bindsym $mod+shift+g exec firefox
 bindsym $mod+shift+e exec code
 # bindsym $mod+z exec systemctl suspend
 bindsym $mod+z exec loginctl lock-session
 
 set $menu dmenu_path | dmenu -i -m 1 -fn 'noto sans' -nb '#0f0f0f' -b | xargs swaymsg exec --
 bindsym $mod+space exec $menu
+
+bindsym $mod+p       exec grimshot copy active
+bindsym $mod+Shift+p exec grimshot copy area
+bindsym $mod+Mod1+p  exec grimshot copy output
+bindsym $mod+Ctrl+p  exec grimshot copy window
 
 # tiling and colors
 default_border pixel 2

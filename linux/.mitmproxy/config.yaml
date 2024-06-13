@@ -1,0 +1,6 @@
+---
+listen_host: localhost
+listen_port: 10006
+# console_palette: solarized_light
+console_palette_transparent: true
+web_port: 10005
