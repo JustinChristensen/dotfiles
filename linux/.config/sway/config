@@ -15,7 +15,6 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term foot
-
 #
 # Example configuration:
 #
@@ -223,14 +222,19 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 output * scale 1 bg #222222 solid_color
 
 # make the viewsonic the "primary" output
-output DP-3 pos 0,0
-output eDP-1 pos 3840,956
+output DP-3 pos 2256 424 
 
+# output eDP-1 pos 3840,956
+output eDP-1 pos 0 0
 # portable monitor left side
-output DP-1 pos 1920 1380
+output DP-1 pos 2256 424
+# output DP-1 pos -1920 424
 
-focus output DP-3
-workspace 1 output DP-3 eDP-1
+# output eDP-1 pos 1920 0
+# output DP-1 pos 0 424
+
+# focus output DP-3
+# workspace 1 output DP-3 eDP-1
 
 # sway bar
 bar {
@@ -278,3 +282,6 @@ exec swayidle -w \
     lock 'playerctl pause && swaylock -f' \
     before-sleep 'swaymsg "output * power off" && swaylock -f' \
     after-resume 'swaymsg "output * power on"'
+
+exec sway-audio-idle-inhibit
+exec fcitx5
